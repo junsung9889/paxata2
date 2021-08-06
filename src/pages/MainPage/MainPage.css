@@ -1,0 +1,19 @@
+.mainHeader{
+    font-size:xx-large;
+    color:white;
+    padding: 10px;
+    background-color: #2E4755;
+}
+.mainBody{
+    padding: 10px;
+}
+.searchBar{
+    width:40%;
+}
+.btn{
+    margin-left: 10px;
+}
+.table{
+    margin-top: 10px;
+    /*border: gray 1px;*/
+}

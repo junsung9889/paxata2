@@ -1,10 +1,9 @@
-import NavigationBar from "../components/NavigationBar";
 import Form from 'react-bootstrap/Form'
 
-function MainPage(){
+export default function ImportPageHeader(){
     return(
-        <div>
-            <NavigationBar></NavigationBar>
+        <div className = 'importHeader'>
+            Import
             <Form.Group controlId="formFileMultiple" className="mb-3">
                 <Form.Label>Multiple files input example</Form.Label>
                 <Form.Control type="file" multiple />
@@ -12,5 +11,3 @@ function MainPage(){
         </div>
     );
 }
-
-export default MainPage;
