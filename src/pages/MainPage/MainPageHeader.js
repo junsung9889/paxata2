@@ -6,7 +6,7 @@ export default function MainPageHeader(){
         <div className = "mainHeader">
             DataSet
             <Link to = '/import'>
-                <Button className = "btn">Import</Button>
+                <Button className = "main-btn">Import</Button>
             </Link>
         </div>
     );

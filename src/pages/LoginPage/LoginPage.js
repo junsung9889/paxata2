@@ -1,46 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import LoginAPI from "../../apis/LoginAPI";
 import "./LoginPage.css";
-import { Link } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
+  const [auth, setAuth] = useState('false');
 
   function validateForm() {
-    return email.length > 0 && password.length > 0;
+    return name.length > 0 && password.length > 0;
   }
 
   function handleSubmit(event) {
     event.preventDefault();
   }
+  function checkLogin(){
+    console.log(1);
+    LoginAPI({name,password});
+    //history.push('./main');
+  }
 
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg" controlId="email">
-          <Form.Label>Email</Form.Label>
+        <Form.Group size="lg">
+          <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </Form.Group>
         <Form.Group size="lg" controlId="password">
-          <Form.Label>Password</Form.Label>
+          <Form.Label className = 'password'>Password</Form.Label>
           <Form.Control
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Link to = '/main'>
-            <Button block size="mg" type="submit" disabled={!validateForm()} className = 'loginButton'>
-                Login
-            </Button>
-        </Link>
+        <Button size="mg" type="submit" disabled={!validateForm()} className = 'loginButton'
+                onClick = {() => {checkLogin()}}>
+            Login
+        </Button>
       </Form>
     </div>
   );

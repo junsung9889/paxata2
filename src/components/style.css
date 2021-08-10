@@ -3,3 +3,9 @@
     color: white;
     padding: 10px;
 }
+
+.title{
+    font-weight: bold;
+    font-size: 25px !important;
+    padding: 5px;
+}

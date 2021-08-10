@@ -10,10 +10,15 @@
 .searchBar{
     width:40%;
 }
-.btn{
+.main-btn{
     margin-left: 10px;
 }
-.table{
+table{
     margin-top: 10px;
     /*border: gray 1px;*/
+    text-align: center;
+}
+
+td{
+    vertical-align: middle;
 }

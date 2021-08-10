@@ -1,12 +1,13 @@
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-
 import './style.css'
+import logo from './paxata_logo_icon.png'
 
 function NavigationBar(){
     return(
     <Navbar className = "navBar">
-        <Navbar.Brand href="#" className = "text-light">Paxata2</Navbar.Brand>
+        <img src = {logo}></img>
+        <Navbar.Brand href="/main" className = "title text-light">Paxata2</Navbar.Brand>
         <Navbar.Collapse id="navbarScroll">
             <Nav
                 className="mr-auto my-2 my-lg-0"

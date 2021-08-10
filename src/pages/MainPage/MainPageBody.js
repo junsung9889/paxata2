@@ -58,10 +58,10 @@ export default function MainPageBody(){
                     className="mr-2"
                     aria-label="Search"
                 />
-                <Button clasName = "btn" variant="success "
+                <Button className = "main-btn" variant="success "
                         onClick = {() => setNum(prev => prev + 1)}
                 >+</Button>
-                <Button clasName = "btn" variant="success">Search</Button>
+                <Button className = "main-btn" variant="success">Search</Button>
             </Form>
             <FileTable numList = {[...Array(num).keys()]}></FileTable>
         </div>

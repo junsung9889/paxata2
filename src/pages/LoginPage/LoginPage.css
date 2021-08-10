@@ -10,5 +10,9 @@
 }
 .loginButton{
     margin-left : 0;
-    margin-top:10px;
+    margin-top: 12px;
+}
+
+.password{
+    margin-top: 5px;
 }
