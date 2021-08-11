@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/setupProxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/LoginAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/LoginAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +66,9 @@
       <workItem from="1628230699073" duration="7292000" />
       <workItem from="1628240090301" duration="415000" />
       <workItem from="1628561267869" duration="25000" />
-      <workItem from="1628561306199" duration="10013000" />
+      <workItem from="1628561306199" duration="11692000" />
+      <workItem from="1628582382818" duration="1792000" />
+      <workItem from="1628640718612" duration="11461000" />
     </task>
     <servers />
   </component>
@@ -78,6 +81,22 @@
         <entry key="MAIN">
           <value>
             <State />
+          </value>
+        </entry>
+        <entry key="c00c75c9-2e0a-4ebd-9f29-adfc2aeb9378">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="d0140dd8-2126-4465-a3a3-ce8a117405db">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
