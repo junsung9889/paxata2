@@ -1,19 +1,24 @@
 import axios from "axios";
 
-export default function LoginAPI({name, password}){
+export default async function LoginAPI({name, password}){
 
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
+    let isAuthenticated = false;
 
-    axios({
+    await axios({
         url: '/rest/userinfo',
         method: 'get',
         headers: {
             Authorization: basicAuth,
         }
     }).then(function(response) {
-        console.log('Authenticated');
+        sessionStorage.setItem("name",name);
+        sessionStorage.setItem("password",password);
+        isAuthenticated = true;
     }).catch(function(error) {
-        console.log('Error on Authentication');
+        alert("Login Failed");
     });
+
+    return isAuthenticated;
 }

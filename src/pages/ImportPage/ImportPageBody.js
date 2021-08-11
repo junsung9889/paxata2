@@ -1,14 +1,25 @@
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import ImportAPI from '../../apis/ImportAPI';
+import { useState } from 'react';
+import ExportAPI from '../../apis/ExportAPI';
 
 export default function ImportPageBody(){
+    const [files, setFiles] = useState([]);
+    const onChange = (e) => {
+        setFiles(e.target.files);
+    }
+    const onClick = () => {
+        console.log(files);
+        ImportAPI({files});
+        ExportAPI();
+    }
     return(
         <div className = 'importBody'>
-            <Form.Group controlId="formFileMultiple" className="mb-3 file-input">
-                <Form.Control type="file" multiple />
+            <Form.Group className="mb-3 file-input">
+                <Form.Control type="file" multiple onChange = {onChange}/>
             </Form.Group>
-            <Button onClick = {() => ImportAPI()}>Upload</Button>
+            <Button onClick = {onClick}>Upload</Button>
         </div>
     );
 }

@@ -18,10 +18,11 @@ export default function LoginPage() {
   function handleSubmit(event) {
     event.preventDefault();
   }
-  function checkLogin(){
+  async function checkLogin(){
     console.log(1);
-    LoginAPI({name,password});
-    //history.push('./main');
+    const isAuthenticated = await LoginAPI({name,password});
+    if(isAuthenticated)
+      history.push('./main');
   }
 
   return (
