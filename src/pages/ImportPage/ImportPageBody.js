@@ -8,11 +8,11 @@ export default function ImportPageBody(){
     const [files, setFiles] = useState([]);
     const onChange = (e) => {
         setFiles(e.target.files);
+        console.log(files);
     }
     const onClick = () => {
         console.log(files);
-        ImportAPI({files});
-        ExportAPI();
+        ImportAPI(files);
     }
     return(
         <div className = 'importBody'>

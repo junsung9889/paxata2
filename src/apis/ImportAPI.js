@@ -1,25 +1,28 @@
 import axios from "axios";
 
-export default async function ImportAPI({files}){
+export default async function ImportAPI(files){
     const name = sessionStorage.getItem("name");
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
+    console.log(name);
+    console.log(password);
+    console.log(credentials);
     const basicAuth = 'Basic ' + credentials;
     for (let file of files){
-        const formData = new FormData();
-        formData.append(`@${file.name}`,file);
+        var fd = new FormData();
+        fd.append('data', file);
         await axios({
             url: '/rest/datasource/imports/local',
             method: 'post',
-            data: formData,
             headers: {
                 'Authorization': basicAuth,
-                //'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+            },
+            data: fd,
         }).then(function(response) {
             console.log(response);
         }).catch(function(error) {
             console.log(error);
         });
-    }
-}
+    };
+};
