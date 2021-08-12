@@ -7,17 +7,12 @@ import React, {useState} from 'react';
 
 function ImportPage(){
 
-    const fileList = new FormData();
-    const [files, setFiles] = useState(fileList);
+    const [files, setFiles] = useState([]);
     const hiddenFileInput = React.useRef(null);
 
     const handleChange = event => {
         const fileUploaded = event.target.files;
-        for(let file of fileUploaded){
-            fileList.append('file', file);
-        };
-        setFiles(files => fileList);
-        console.log(fileList.getAll('file'));
+        setFiles(files => files.concat(Array.from(fileUploaded)));
     };
     
     return(

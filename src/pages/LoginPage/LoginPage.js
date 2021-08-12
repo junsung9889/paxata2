@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import LoginAPI from "../../apis/LoginAPI";
@@ -9,7 +9,6 @@ export default function LoginPage() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
-  const [auth, setAuth] = useState('false');
 
   function validateForm() {
     return name.length > 0 && password.length > 0;

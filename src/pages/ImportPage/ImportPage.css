@@ -7,3 +7,6 @@
 .importBody{
     padding: 10px;
 }
+.importPage{
+    overflow: hidden;
+}
