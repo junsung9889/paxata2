@@ -6,7 +6,7 @@ import logo from './paxata_logo_icon.png'
 function NavigationBar(){
     return(
     <Navbar className = "navBar">
-        <img src = {logo}></img>
+        <img src = {logo} alt =''></img>
         <Navbar.Brand href="/main" className = "title text-light">Paxata2</Navbar.Brand>
         <Navbar.Collapse id="navbarScroll">
             <Nav

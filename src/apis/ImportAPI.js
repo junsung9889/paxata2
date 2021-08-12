@@ -7,7 +7,7 @@ export default async function ImportAPI({files}){
     const basicAuth = 'Basic ' + credentials;
     for (let file of files){
         const formData = new FormData();
-        formData.append(`@${file.name}`,file);
+        formData.append('data',file);
         await axios({
             url: '/rest/datasource/imports/local',
             method: 'post',

@@ -22,3 +22,20 @@ table{
 td{
     vertical-align: middle;
 }
+.details{
+    margin-bottom: 20px;
+}
+.details-title{
+    padding:10px;
+    margin-left: 3px;
+    font-size: x-large;
+}
+
+.outer{
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+}
+.inner{
+    align-self: flex-end;
+}
