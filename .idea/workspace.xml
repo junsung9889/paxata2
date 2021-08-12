@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageHeader.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +68,7 @@
       <workItem from="1628561306199" duration="11692000" />
       <workItem from="1628582382818" duration="1792000" />
       <workItem from="1628640718612" duration="11461000" />
+      <workItem from="1628727109901" duration="2478000" />
     </task>
     <servers />
   </component>
