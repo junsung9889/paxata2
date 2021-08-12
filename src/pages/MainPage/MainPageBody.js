@@ -1,4 +1,4 @@
-import Button from 'react-bootstrap/Button'
+import {Form,FormControl, Button} from 'react-bootstrap'
 import {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import React from 'react';
@@ -18,6 +18,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import ExportAPI from '../../apis/ExportAPI';
 import DeleteAPI from '../../apis/DeleteAPI';
 import GetTagAPI from '../../apis/GetTagAPI';
+import FilterModal from './FilterModal';
 
 const useRowStyles = makeStyles({
     root: {
@@ -29,6 +30,8 @@ const useRowStyles = makeStyles({
 
 export default function CollapsibleTable() {
     const [data,setData] = useState([]);
+    let inputText = "";
+
     async function fetchData(){
         const files = await ExportAPI();
         setData(files);
@@ -39,6 +42,24 @@ export default function CollapsibleTable() {
     
     return (
         <div style={{padding:20}}>
+            <div className ='bodyHeader'>
+                <FormControl
+                    type="search"
+                    placeholder="Search"
+                    className="mr-2"
+                    aria-label="Search" style ={{width:'30vw', marginRight:'10px'}}
+                    onChange = {(e) => inputText = e.target.value}
+                />
+                <Button variant="success"
+                        onClick = {() => {
+                            console.log(data);
+                            console.log(inputText);
+                            console.log(data.filter((row) => row.name.includes(inputText)));
+                            setData(data.filter((row) => row.name.includes(inputText)));
+                        }}
+                >Search</Button>
+                <FilterModal></FilterModal>
+            </div>
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                     <TableHead>
@@ -53,9 +74,9 @@ export default function CollapsibleTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map((row) => (
+                        {data.map((row) => 
                             <Row key={row.dataFileId} row={row} />
-                        ))}
+                        )}
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -79,7 +100,7 @@ export default function CollapsibleTable() {
             getTag();
         },[]);
         async function deleteItem(){
-            await DeleteAPI({dataFileId});
+            DeleteAPI({dataFileId});
             await fetchData();
             alert('Data Deleted');
         }
