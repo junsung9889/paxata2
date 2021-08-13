@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import ImportAPI from '../../apis/ImportAPI';
 import { useState } from 'react';
-import ExportAPI from '../../apis/ExportAPI';
+import {getData} from '../../apis/ExportAPI';
 
 export default function ImportPageBody(){
     const [files, setFiles] = useState([]);
@@ -12,7 +12,7 @@ export default function ImportPageBody(){
     const onClick = () => {
         console.log(files);
         ImportAPI({files});
-        ExportAPI();
+        getData();
     }
     return(
         <div className = 'importBody'>

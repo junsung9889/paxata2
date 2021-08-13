@@ -15,7 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import ExportAPI from '../../apis/ExportAPI';
+import {getData} from '../../apis/ExportAPI';
 import DeleteAPI from '../../apis/DeleteAPI';
 import GetTagAPI from '../../apis/GetTagAPI';
 
@@ -30,7 +30,7 @@ const useRowStyles = makeStyles({
 export default function CollapsibleTable() {
     const [data,setData] = useState([]);
     async function fetchData(){
-        const files = await ExportAPI();
+        const files = await getData();
         setData(files);
     }
     useEffect(() => {
@@ -133,7 +133,7 @@ export default function CollapsibleTable() {
                                     <div className = 'inner'>
                                         <Button variant = 'danger' style = {{marginRight:'10px'}}
                                                 onClick ={()=>deleteItem()}>Delete</Button>
-                                        <Link to = '/export'>
+                                        <Link to = {`/export/${row.dataFileId}`}>
                                             <Button >Export</Button>
                                         </Link>
                                     </div>
