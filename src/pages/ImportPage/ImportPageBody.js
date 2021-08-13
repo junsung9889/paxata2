@@ -5,6 +5,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Panel from './Panel';
+import Button from 'react-bootstrap/Button';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -37,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
     root: {
         backgroundColor: theme.palette.background.paper,
         display: 'flex',
-        height: '400px',
-        width: '95%',
-        margin: '0 auto',
-        marginTop:'20px'
+        minHeight: '300px',
+        height: '60vh',
+        borderRadius: '5px',
+        margin :'20px',
     },
     tabs: {
         marginTop: '10px',
+        width: '30vw',
         borderRight: `3px solid ${theme.palette.divider}`,
     },
 }));
@@ -57,26 +59,31 @@ export default function VerticalTabs(props) {
         setValue(newValue);
     }; 
     return (
-        <div className={classes.root}>
-            <Tabs
-                orientation="vertical"
-                scrollButtons="off"
-                variant="scrollable"
-                value={value}
-                onChange={handleChange}
-                aria-label="Vertical tabs"
-                className={classes.tabs}
-            >
-            {
-                fileList.map((file,index) => <Tab label = {file.name} {...a11yProps(index)}></Tab>)
-            }
-            </Tabs>
-            {
-                fileList.map((file,index) => 
-                <TabPanel value = {value} index = {index} style ={{width:'50%'}}>
-                    <Panel></Panel>
-                </TabPanel>)
-            }
+        <div style = {{display : 'flex', flexDirection: 'column'}}>
+            <div className={classes.root}>
+                <Tabs
+                    orientation="vertical"
+                    scrollButtons="off"
+                    variant="scrollable"
+                    value={value}
+                    onChange={handleChange}
+                    aria-label="Vertical tabs"
+                    className={classes.tabs}
+                >
+                {
+                    fileList.map((file,index) => <Tab label = {file.name} {...a11yProps(index)}
+                    style = {{alignSelf:'center'}}
+                    ></Tab>)
+                }
+                </Tabs>
+                {
+                    fileList.map((file,index) => 
+                    <TabPanel value = {value} index = {index} style ={{width:'100%',overflow:'auto'}}>
+                        <Panel></Panel>
+                    </TabPanel>)
+                }
+            </div>
+            <Button style ={{marginLeft:'auto', marginRight: '20px', marginBottom:'10px'}}>Import All</Button>
         </div>
     );
 }

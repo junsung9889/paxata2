@@ -3,10 +3,14 @@
     color:white;
     padding: 10px;
     background-color: #2E4755;
+    display: flex;
 }
-.importBody{
-    padding: 10px;
+.import-btn{
+    margin-left: 10px;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
 }
-.importPage{
-    overflow: hidden;
+.importHeaderTitle{
+    margin-left: 10px;
 }

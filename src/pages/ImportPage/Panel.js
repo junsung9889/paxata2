@@ -33,8 +33,8 @@ export default function Panel(){
             </Row>
             <Row>
                 <Form.Group className="mb-2">
-                    <Button variant="primary" type="submit" style ={{float:'right'}}>
-                        Import
+                    <Button variant="success" type="submit" style ={{float:'right'}}>
+                        Save Changes
                     </Button>
                 </Form.Group>
             </Row>
