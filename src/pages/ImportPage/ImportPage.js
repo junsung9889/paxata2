@@ -6,11 +6,9 @@ import React, {useState} from 'react';
 
 
 function ImportPage(){
-
     const [files, setFiles] = useState([]);
     const hiddenFileInput = React.useRef(null);
-
-    const handleChange = event => {
+    const handleChange = (event) => {
         const fileUploaded = event.target.files;
         setFiles(files => files.concat(Array.from(fileUploaded)));
     };
@@ -26,6 +24,7 @@ function ImportPage(){
                 type="file"
                 ref={hiddenFileInput}
                 onChange={handleChange}
+                onClick = {(e) =>{e.target.value = ''}}
                 style={{display: 'none'}}
                 multiple
             />

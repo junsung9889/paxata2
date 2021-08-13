@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 
 export default function ImportPageHeader(props){
     const {fileList} = props
-    const handleClick = event => {
+    const handleClick = () => {
         fileList.current.click();
     };
     return(
