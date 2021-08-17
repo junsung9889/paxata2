@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageBody.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/ExportAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ExportAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +40,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="terminal" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Node.js.App.js">
@@ -69,6 +76,12 @@
       <workItem from="1628582382818" duration="1792000" />
       <workItem from="1628640718612" duration="11461000" />
       <workItem from="1628727109901" duration="2478000" />
+      <workItem from="1628755982621" duration="118000" />
+      <workItem from="1628756115834" duration="141000" />
+      <workItem from="1628756279117" duration="2312000" />
+      <workItem from="1628758732457" duration="168000" />
+      <workItem from="1628813148960" duration="295000" />
+      <workItem from="1628813564352" duration="6166000" />
     </task>
     <servers />
   </component>
