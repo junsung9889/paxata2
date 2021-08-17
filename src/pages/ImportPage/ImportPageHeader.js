@@ -2,14 +2,14 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default function ImportPageHeader(props){
-    const {fileList} = props
+    const {fileInput} = props
     const handleClick = () => {
-        fileList.current.click();
+        fileInput.current.click();
     };
     return(
-        <div className='importHeader'>
-            <h1 className = "importHeaderTitle">Import</h1>
-            <Button onClick={handleClick} className= 'import-btn'>Upload</Button>
+        <div className='header'>
+            <h1 className = "headerTitle">Import</h1>
+            <Button onClick={handleClick} className= 'importButton'>Upload</Button>
         </div>
     );
 }

@@ -1,16 +1,15 @@
-.importHeader{
+.header {
+    display: flex;
     font-size:xx-large;
     color:white;
     padding: 10px;
     background-color: #2E4755;
-    display: flex;
 }
-.import-btn{
+
+@mixin headerButton {
     margin-left: 10px;
-    width: fit-content;
-    height: fit-content;
-    align-self: center;
 }
-.importHeaderTitle{
+
+.headerTitle{
     margin-left: 10px;
 }

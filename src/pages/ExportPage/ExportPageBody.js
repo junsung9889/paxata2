@@ -16,7 +16,6 @@ function SeparatorOptions(props){
             <br/>
             <Divider/>
             <br/>
-
             <Row>
                 <Form.Group as={Col} >
                     <Form.Label>Column Separator</Form.Label>
@@ -36,7 +35,6 @@ function SeparatorOptions(props){
                                       copiedOpts[1] = event.target.value;
                                       setOptions(copiedOpts);
                                   }} />
-
                 </Form.Group>
             </Row>
             <br/>
@@ -76,7 +74,6 @@ function SeparatorOptions(props){
 function JsonOptions(props){
     const {options} = props;
     const {setOptions} = props;
-
     return(
         <>
             <br/>
@@ -95,7 +92,6 @@ function JsonOptions(props){
 function JMLOptions(props){
     const {options} = props;
     const {setOptions} = props;
-
     return(
         <>
             <br/>
@@ -113,7 +109,6 @@ function JMLOptions(props){
 
 export default function ExportPageBody(props){
     const basicSepOpts = [',', '\\n', true, true, false] /// [ColSep, RowSep, Header, Quotes, ByteOrderMarks]
-
     const {data} = props;
     const [name, setName] = useState('');
     const [format, setFormat] = useState('text/csv');
@@ -175,7 +170,6 @@ export default function ExportPageBody(props){
     },[]);
 
     return(
-
         <>
             <Paper style={{padding:20, margin:20,}}>
                 <Form>
@@ -222,6 +216,4 @@ export default function ExportPageBody(props){
             </div>
         </>
     )
-
 }
-

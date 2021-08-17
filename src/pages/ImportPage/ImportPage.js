@@ -1,13 +1,13 @@
 import NavigationBar from "../../components/NavigationBar"
-import './ImportPage.css'
+import './ImportPage.scss'
 import ImportPageHeader from "./ImportPageHeader"
 import ImportPageBody from "./ImportPageBody"
-import React, {useState} from 'react';
+import {useRef, useState} from 'react';
 
 
 function ImportPage(){
     const [files, setFiles] = useState([]);
-    const hiddenFileInput = React.useRef(null);
+    const hiddenFileInput = useRef(null);
     const handleChange = (event) => {
         const fileUploaded = event.target.files;
         setFiles(files => files.concat(Array.from(fileUploaded)));
@@ -15,11 +15,9 @@ function ImportPage(){
     
     return(
         <>
-            <div className = 'importPage'>
-                <NavigationBar></NavigationBar>
-                <ImportPageHeader fileList={hiddenFileInput}></ImportPageHeader>
-                <ImportPageBody fileList={files}></ImportPageBody>
-            </div>
+            <NavigationBar></NavigationBar>
+            <ImportPageHeader fileInput = {hiddenFileInput}></ImportPageHeader>
+            <ImportPageBody fileList = {files}></ImportPageBody>
             <input
                 type="file"
                 ref={hiddenFileInput}

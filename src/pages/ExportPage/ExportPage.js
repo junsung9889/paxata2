@@ -1,13 +1,11 @@
 /* eslint no-restricted-globals: ["off"] */
 import {useEffect} from 'react';
 import {useState} from 'react';
-import {Suspense} from 'react';
 import {getDataWithId} from '../../apis/ExportAPI';
 import NavigationBar from "../../components/NavigationBar";
-import './ExportPage.css';
+import './ExportPage.scss';
 import ExportPageHeader from './ExportPageHeader';
 import ExportPageBody from './ExportPageBody';
-import './ExportPage.css';
 
 function ExportPage(){
     const [data,setData] = useState(null);
@@ -20,16 +18,16 @@ function ExportPage(){
     },[]);
 
     return(
-        <div className = 'exportPage'>
-            <main>
-                {data !== null && data.length !== 0 &&
+        <>
+            {
+                data !== null && data.length !== 0 &&
                 <>
                     <NavigationBar></NavigationBar>
                     <ExportPageHeader data={data}></ExportPageHeader>
                     <ExportPageBody data={data}></ExportPageBody>
-                </>}
-            </main>
-        </div>
+                </>
+            }
+        </>
     );
 }
 
