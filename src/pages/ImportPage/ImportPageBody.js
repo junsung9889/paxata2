@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -57,6 +58,7 @@ export default function VerticalTabs(props) {
     const [fileNames,setFileNames] = useState([]);
     const [fileDescs,setFileDescs] = useState([]);
     const dataFileId = location.pathname.split('/')[2];
+    const history = useHistory();
 
     const updateFileList = () => {
         let names = [];
@@ -81,8 +83,10 @@ export default function VerticalTabs(props) {
             const file = fileList[0];
             const fileName = fileNames[0];
             const fileDesc = fileDescs[0];
-            await AddVersionAPI({file,fileName,fileDesc,dataFileId});
+            if(file !== undefined)
+                await AddVersionAPI({file,fileName,fileDesc,dataFileId});
         }
+        history.push('../main');
     };
 
     useEffect(() =>{updateFileList();},[fileList]);

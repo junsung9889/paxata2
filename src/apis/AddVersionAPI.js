@@ -5,7 +5,6 @@ export default async function AddVersionAPI({file,fileName,fileDesc,dataFileId})
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
-    
     const fd = new FormData();
     fd.append('data', file);
     await axios({

@@ -19,7 +19,7 @@ export default async function ImportAPI({fileList,fileNames,fileDescs}){
             data: fd,
         }).then(function(response) {
             console.log(response);
-            alert('Import All Completed!!!')
+            alert('Import All Completed!!!');
         }).catch(function(error) {
             console.log(error);
         });
