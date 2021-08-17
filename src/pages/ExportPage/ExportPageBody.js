@@ -1,4 +1,3 @@
-import Box from '@material-ui/core/Box';
 import { Form,Button ,Row, Col} from "react-bootstrap";
 import React, {useState, useEffect} from 'react';
 import Paper from '@material-ui/core/Paper';
@@ -89,7 +88,7 @@ function JsonOptions(props){
     );
 }
 
-function JMLOptions(props){
+/*function JMLOptions(props){
     const {options} = props;
     const {setOptions} = props;
     return(
@@ -105,7 +104,7 @@ function JMLOptions(props){
 
         </>
     );
-}
+}*/
 
 export default function ExportPageBody(props){
     const basicSepOpts = [',', '\\n', true, true, false] /// [ColSep, RowSep, Header, Quotes, ByteOrderMarks]
@@ -127,24 +126,24 @@ export default function ExportPageBody(props){
         var formatString = ''
         var nameList = _name.split('.');
 
-        if(nameList[0] == ''){
+        if(nameList[0] === ''){
             nameList = data[0].source.name.split('.');
         }
 
         if(nameList.length > 1){
             nameList.length = nameList.length - 1;
         }
-        if(_format=='csv'){
+        if(_format==='csv'){
             formatString = 'csv';
-        } else if(_format=='Avro'){
+        } else if(_format==='Avro'){
             formatString = 'avro';
-        } else if(_format=='Excel'){
+        } else if(_format==='Excel'){
             formatString = 'xlsx';
-        } else if(_format=='Fixed Width'){
+        } else if(_format==='Fixed Width'){
             formatString = 'txt';
-        } else if(_format=='JSON'){
+        } else if(_format==='JSON'){
             formatString = 'json';
-        } else if(_format=='XML'){
+        } else if(_format==='XML'){
             formatString = 'xml';
         }
         nameList.push(formatString);
@@ -206,9 +205,9 @@ export default function ExportPageBody(props){
                             </Form.Select>
                         </Form.Group>
                     </Row>
-                    {format=='text/csv' && <SeparatorOptions options={sepOpts} setOptions={setSepOpts} />}
-                    {format=='text/JSON' && <JsonOptions options={jsonOpts} setOptions={setJsonOpts} />}
-                    {format=='text/XML' && <JsonOptions options={xmlOpts} setOptions={setXmlOpts} />}
+                    {format==='text/csv' && <SeparatorOptions options={sepOpts} setOptions={setSepOpts} />}
+                    {format==='text/JSON' && <JsonOptions options={jsonOpts} setOptions={setJsonOpts} />}
+                    {format==='text/XML' && <JsonOptions options={xmlOpts} setOptions={setXmlOpts} />}
                 </Form>
             </Paper>
             <div style={{display: 'flex'}}>
