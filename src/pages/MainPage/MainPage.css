@@ -1,8 +1,12 @@
 .mainHeader{
+    display: flex;
     font-size:xx-large;
     color:white;
     padding: 10px;
     background-color: #2E4755;
+}
+.headerTitle{
+    margin-left: 9px;
 }
 .mainBody{
     padding: 10px;
@@ -21,4 +25,29 @@ table{
 
 td{
     vertical-align: middle;
+}
+.details{
+    margin-bottom: 20px;
+}
+.details-title{
+    padding:10px;
+    margin-left: 3px;
+    font-size: x-large;
+}
+
+.outer{
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+}
+.inner{
+    align-self: flex-end;
+}
+.bodyHeader{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.filter-btn{
+    margin-left: auto;
 }

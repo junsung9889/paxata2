@@ -5,6 +5,7 @@ export default async function ImportAPI({fileList,fileNames,fileDescs}){
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
+    
     for (let i = 0; i < fileList.length; i++){
         var fd = new FormData();
         fd.append('data', fileList[i]);
