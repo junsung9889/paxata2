@@ -7,7 +7,7 @@ export default async function ImportAPI({fileList,fileNames,fileDescs}){
     const basicAuth = 'Basic ' + credentials;
     
     for (let i = 0; i < fileList.length; i++){
-        var fd = new FormData();
+        const fd = new FormData();
         fd.append('data', fileList[i]);
         await axios({
             url: `/rest/datasource/imports/local?name=${fileNames[i]}&description=${fileDescs[i]}`,
@@ -19,6 +19,7 @@ export default async function ImportAPI({fileList,fileNames,fileDescs}){
             data: fd,
         }).then(function(response) {
             console.log(response);
+            alert('Import All Completed!!!')
         }).catch(function(error) {
             console.log(error);
         });

@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Panel from './Panel';
 import Button from 'react-bootstrap/Button';
 import ImportAPI from '../../apis/ImportAPI';
+import AddVersionAPI from '../../apis/AddVersionAPI';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -48,14 +49,15 @@ const useStyles = makeStyles((theme) => ({
         borderRight: `3px solid ${theme.palette.divider}`,
     },
 }));
-
+/* eslint no-restricted-globals: ["off"] */
 export default function VerticalTabs(props) {
     const classes = useStyles();
     const {fileList} = props;
     const [value, setValue] = useState(0);
     const [fileNames,setFileNames] = useState([]);
     const [fileDescs,setFileDescs] = useState([]);
-    
+    const dataFileId = location.pathname.split('/')[2];
+
     const updateFileList = () => {
         let names = [];
         let descs = [];
@@ -72,8 +74,15 @@ export default function VerticalTabs(props) {
     };
     
     const onClick = async() => {
-        await ImportAPI({fileList,fileNames,fileDescs});
-        alert("Import All Complete!!!");
+        if(dataFileId === undefined){
+            await ImportAPI({fileList,fileNames,fileDescs});
+        }
+        else{
+            const file = fileList[0];
+            const fileName = fileNames[0];
+            const fileDesc = fileDescs[0];
+            await AddVersionAPI({file,fileName,fileDesc,dataFileId});
+        }
     };
 
     useEffect(() =>{updateFileList();},[fileList]);
@@ -107,7 +116,7 @@ export default function VerticalTabs(props) {
                 }
             </div>
             <Button style ={{marginLeft:'auto', marginRight: '20px', marginBottom:'10px'}} onClick = {onClick}>
-                Import All
+                Finish
             </Button>
         </div>
     );

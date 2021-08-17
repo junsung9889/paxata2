@@ -6,7 +6,7 @@ export async function getData(){
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
     let data = null;
-    await axios.get('/rest/library/data',{
+    await axios.get('/rest/library/data/*/-1',{
         headers: {
             'Authorization': basicAuth,
         }
