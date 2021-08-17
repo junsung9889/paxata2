@@ -103,6 +103,11 @@ export default function CollapsibleTable() {
         useEffect(()=>{
             getTag();
         },[]);
+
+        async function addVersion(version){
+
+        }
+
         async function deleteItem(){
             DeleteAPI({dataFileId});
             await fetchData();
@@ -156,10 +161,12 @@ export default function CollapsibleTable() {
                                 </Table>
                                 <div className = 'outer'>
                                     <div className = 'inner'>
-                                        <Button variant = 'danger' style = {{marginRight:'10px'}}
+                                        <Button variant = 'outline-success' style = {{marginRight:'10px'}}
+                                                onClick ={()=>addVersion(row.version)}>Add Version</Button>
+                                        <Button variant = 'outline-danger' style = {{marginRight:'10px'}}
                                                 onClick ={()=>deleteItem()}>Delete</Button>
                                         <Link to = {`/export/${row.dataFileId}`}>
-                                            <Button >Export</Button>
+                                            <Button variant = 'outline-primary'>Export</Button>
                                         </Link>
                                     </div>
                                 </div>
