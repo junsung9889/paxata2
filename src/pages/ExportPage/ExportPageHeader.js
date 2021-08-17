@@ -11,7 +11,7 @@ export default function ExportPageHeader(props){
                   alignItems="center"
                   spacing={3}>
                 <Grid item>
-                    Export
+                    <h1 style = {{marginLeft: '10px'}}>Export</h1>
                 </Grid>
                 <Grid item>
                     <Paper style={{paddingLeft: 5, paddingRight: 5, backgroundColor: '#1C3847',
