@@ -12,7 +12,6 @@ export default async function GetTagAPI({dataFileId}){
         }
     }).then(function(response) {
         data = response.data;
-        console.log(response.data);
     }).catch(function(error) {
         console.log(error);
     });

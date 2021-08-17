@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageBody.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ImportPage/ImportPageHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/ExportAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ExportAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/GetTagAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/GetTagAPI.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
