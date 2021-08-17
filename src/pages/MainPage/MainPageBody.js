@@ -30,7 +30,9 @@ const useRowStyles = makeStyles({
 
 export default function CollapsibleTable() {
     const [data,setData] = useState([]);
+    const [filtered, setFiltered] = useState([]);
     let inputText = "";
+    let filteredData = [];
 
     async function fetchData(){
         const files = await getData();
@@ -39,6 +41,14 @@ export default function CollapsibleTable() {
     useEffect(() => {
         fetchData();
     },[]);
+
+    useEffect(() => {
+        setFiltered(data);
+    }, [data]);
+
+    function search(){
+        setFiltered(data.filter((row) => row.name.includes(inputText)));
+    };
     
     return (
         <div style={{padding:20}}>
@@ -48,16 +58,10 @@ export default function CollapsibleTable() {
                     placeholder="Search"
                     className="mr-2"
                     aria-label="Search" style ={{width:'30vw', marginRight:'10px'}}
-                    onChange = {(e) => inputText = e.target.value}
+                    onChange = {(e) => {inputText = e.target.value;
+                    search();}}
                 />
-                <Button variant="success"
-                        onClick = {() => {
-                            console.log(data);
-                            console.log(inputText);
-                            console.log(data.filter((row) => row.name.includes(inputText)));
-                            setData(data.filter((row) => row.name.includes(inputText)));
-                        }}
-                >Search</Button>
+
                 <FilterModal></FilterModal>
             </div>
             <TableContainer component={Paper}>
@@ -74,7 +78,7 @@ export default function CollapsibleTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.map((row) => 
+                        {filtered.map((row) =>
                             <Row key={row.dataFileId} row={row} />
                         )}
                     </TableBody>
@@ -108,15 +112,15 @@ export default function CollapsibleTable() {
             <React.Fragment>
                 <TableRow className = {classes.root}>
                     <TableCell component="th" scope="row">
-                        {row.source.name}
+                        {row.name}
                     </TableCell>
                     <TableCell align="right">{row.source.metadata.mimeType}</TableCell>
                     <TableCell align="right">{row.version}</TableCell>
                     <TableCell align="right">{row.state}</TableCell>
                     <TableCell align="right">{row.rowCount}</TableCell>
                     <TableCell align="right">{
-                        tag.map((data) => (
-                            <Button key = {data.name} variant = 'info' style ={{marginLeft:'5px'}}>{data.name}</Button>
+                        tag.map((filtered) => (
+                            <Button key = {filtered.name} variant = 'info' style ={{marginLeft:'5px'}}>{filtered.name}</Button>
                         ))
                     }</TableCell>
                     <TableCell align="right">
