@@ -32,7 +32,6 @@ export default function CollapsibleTable() {
     const [data,setData] = useState([]);
     const [filtered, setFiltered] = useState([]);
     let inputText = "";
-    let filteredData = [];
 
     async function fetchData(){
         const files = await getData();
@@ -103,10 +102,6 @@ export default function CollapsibleTable() {
         useEffect(()=>{
             getTag();
         },[]);
-
-        async function addVersion(version){
-
-        }
 
         async function deleteItem(){
             DeleteAPI({dataFileId});
