@@ -42,7 +42,7 @@ function SearchOptions(props){
         </Form.Select>
         <Form.Control type='text' value={options[index].opt3||''} aria-label="Default select example" {...register('opt3')}>
         </Form.Control>
-          <Button onClick={async() => await clickDel()}>x</Button>
+          <Button onClick={() => clickDel()}>x</Button>
       </Form.Group>
             <br/>
         </>
@@ -51,7 +51,6 @@ function SearchOptions(props){
 
 export default function FilterModal(props) {
   const [show, setShow] = useState(false);
-  const [filter, setFilter] = useState([]);
   const [options,setOptions] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -89,7 +88,6 @@ export default function FilterModal(props) {
   };
 
   function clickAdd(){
-    setFilter(filter.concat(''));
     setOptions(options.concat({}));
   }
 
@@ -106,7 +104,7 @@ export default function FilterModal(props) {
         <Modal.Body>
             <Form>
                 {
-                  filter.map((s,index) => <SearchOptions key={index} options={options} setOptions={setOptions} index={index}></SearchOptions>)
+                  options.map((s,index) => <SearchOptions key={index} options={options} setOptions={setOptions} index={index}></SearchOptions>)
                 }
             </Form>
             <div style={{display: 'flex'}}>
