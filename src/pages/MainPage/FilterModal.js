@@ -34,9 +34,9 @@ function SearchOptions(props){
         </Form.Select>
         <Form.Select value={options[index].opt2} aria-label="Default select example" {...register('opt2')}>
           <option value=''>Select</option>
-            <option value=">=">>=</option>
-            <option value=">">></option>
-            <option value="==">==</option>
+            <option value=">=">{'>='}</option>
+            <option value=">">{'>'}</option>
+            <option value="==">{'=='}</option>
             <option value="<">{`<`}</option>
             <option value="<=">{`<=`}</option>
         </Form.Select>
