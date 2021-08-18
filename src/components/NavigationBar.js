@@ -2,8 +2,12 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import './style.css'
 import logo from './paxata_logo_icon.png'
+import userIcon from './user.png';
+import { Link } from 'react-router-dom';
 
 function NavigationBar(){
+    const userName = sessionStorage.getItem("name");
+
     return(
     <Navbar className = "navBar">
         <img src = {logo} alt =''></img>
@@ -18,6 +22,12 @@ function NavigationBar(){
             <Nav.Link href="#action2" className = "text-light">Link</Nav.Link>
             </Nav>
         </Navbar.Collapse>
+        <div style ={{float: 'right'}}>
+            <Link to = '../'>
+                <img src = {userIcon} alt ='' className = 'userIcon'></img>
+            </Link>
+            {userName}
+        </div>
     </Navbar>
     );
 }
