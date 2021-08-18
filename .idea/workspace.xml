@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/MainPage/FilterModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/FilterModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
     </list>

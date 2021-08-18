@@ -46,36 +46,29 @@ export default function FilterModal(props) {
   const handleShow = () => setShow(true);
 
   const {filtered, setFiltered} = props;
+  const {origin} = props;
 
   const onClick = () => {
-      let copied = filtered.concat();
+      let copied = origin.concat();
       for(let option of options){
           const opt1 = option.opt1;
           const opt2 = option.opt2;
           const opt3 = option.opt3;
           switch(opt2){
               case ">=":
-                  copied.filter(a => a.opt1 >= opt3);
+                  copied = copied.filter(a => a[opt1] >= opt3);
                   break;
               case ">":
-                  copied.filter(a => a[opt1] > parseInt(opt3));
-                  for(let c of copied){
-                      console.log(c[opt1]);
-                  }
-                  console.log(opt3);
-                  console.log(parseInt(opt3));
-
-                  console.log('1111');
-                  console.log(copied);
+                  copied = copied.filter(a => a[opt1] > parseInt(opt3));
                   break;
               case "==":
-                  copied.filter(a => a.opt1 === opt3);
+                  copied = copied.filter(a => a[opt1] === opt3);
                   break;
               case "<":
-                  copied.filter(a => a.opt1 < opt3);
+                  copied = copied.filter(a => a[opt1] < opt3);
                   break;
               case "<=":
-                  copied.filter(a => a.opt1 <= opt3);
+                  copied = copied.filter(a => a[opt1] <= opt3);
                   break;
               default:
                   break;
