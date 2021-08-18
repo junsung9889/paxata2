@@ -3,36 +3,38 @@ import { useState ,useEffect} from 'react';
 import { Form, FormControl } from 'react-bootstrap';
 import {useForm} from 'react-hook-form';
 
-function SearchOptions({options,setOptions,index}){
+function SearchOptions(props){
     const {register, getValues} = useForm();
-    
+    const {options,setOptions,index} = props;
+
     const onChange = ()=>{
       const copiedOptions = options.slice();
       copiedOptions[index] = getValues();
       setOptions(copiedOptions);
     };
 
+    useEffect(() => {
+        onChange();
+    }, []);
+
     return(
-      <Form style={{display:'flex'}} onChange = {onChange}>
-        <Form.Select aria-label="Default select example" {...register('first')}>
-          <option>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+      <Form.Group style={{display:'flex'}} onChange = {onChange}>
+        <Form.Select value={options[index].opt1} aria-label="Default select example" {...register('opt1')}>
+          <option value=''>Select</option>
+          <option value="version">Version</option>
+          <option value="rowCount">Row</option>
         </Form.Select>
-        <Form.Select aria-label="Default select example" {...register('second')}>
-          <option>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <Form.Select value={options[index].opt2} aria-label="Default select example" {...register('opt2')}>
+          <option value=''>Select</option>
+            <option value=">=">>=</option>
+            <option value=">">></option>
+            <option value="==">==</option>
+            <option value="<">{`<`}</option>
+            <option value="<=">{`<=`}</option>
         </Form.Select>
-        <Form.Select aria-label="Default select example" {...register('third')}>
-        <option>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-        </Form.Select>
-      </Form>
+        <Form.Control type='text' value={options[index].opt3||''} aria-label="Default select example" {...register('opt3')}>
+        </Form.Control>
+      </Form.Group>
     );
 }
 
@@ -42,8 +44,44 @@ export default function FilterModal(props) {
   const [options,setOptions] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const {filtered, setFiltered} = props;
+
   const onClick = () => {
-      console.log(options);
+      let copied = filtered.concat();
+      for(let option of options){
+          const opt1 = option.opt1;
+          const opt2 = option.opt2;
+          const opt3 = option.opt3;
+          switch(opt2){
+              case ">=":
+                  copied.filter(a => a.opt1 >= opt3);
+                  break;
+              case ">":
+                  copied.filter(a => a[opt1] > parseInt(opt3));
+                  for(let c of copied){
+                      console.log(c[opt1]);
+                  }
+                  console.log(opt3);
+                  console.log(parseInt(opt3));
+
+                  console.log('1111');
+                  console.log(copied);
+                  break;
+              case "==":
+                  copied.filter(a => a.opt1 === opt3);
+                  break;
+              case "<":
+                  copied.filter(a => a.opt1 < opt3);
+                  break;
+              case "<=":
+                  copied.filter(a => a.opt1 <= opt3);
+                  break;
+              default:
+                  break;
+          }
+          setFiltered(copied);
+      }
   };
 
   function clickAdd(){
@@ -64,7 +102,7 @@ export default function FilterModal(props) {
         <Modal.Body>
             <Form>
                 {
-                  filter.map((s,index) => <SearchOptions options = {options} setOptions = {setOptions} index = {index}></SearchOptions>)
+                  filter.map((s,index) => <SearchOptions key={index} options={options} setOptions={setOptions} index={index}></SearchOptions>)
                 }
             </Form>
             <div style={{display: 'flex'}}>
