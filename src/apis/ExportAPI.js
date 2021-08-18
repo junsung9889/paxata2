@@ -25,18 +25,18 @@ export async function getDataWithId(fileId){
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
-    let data = null;
+    let data1 = null;
 
     await axios.get(`/rest/library/data/${fileId}`,{
         headers: {
             'Authorization': basicAuth,
         }
     }).then(function(response) {
-        data = response.data;
+        data1 = response.data;
         console.log(response.data);
     }).catch(function(error) {
         console.log(error);
     });
 
-    return data;
+    return data1;
 };

@@ -15,7 +15,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {getData} from '../../apis/ExportAPI';
+import {getData, getDataWithId} from '../../apis/ExportAPI';
 import DeleteAPI from '../../apis/DeleteAPI';
 import GetTagAPI from '../../apis/GetTagAPI';
 import FilterModal from './FilterModal';
@@ -32,6 +32,7 @@ export default function CollapsibleTable() {
     const [data,setData] = useState([]);
     const [filtered, setFiltered] = useState([]);
     let inputText = "";
+    const [isVersion, setIsVersion] = useState(false);
 
     async function fetchData(){
         const files = await getData();
@@ -60,7 +61,6 @@ export default function CollapsibleTable() {
                     onChange = {(e) => {inputText = e.target.value;
                     search();}}
                 />
-
                 <FilterModal origin={data} filtered={filtered} setFiltered={setFiltered}></FilterModal>
             </div>
             <TableContainer component={Paper}>
@@ -77,12 +77,17 @@ export default function CollapsibleTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filtered.map((row) =>
-                            <Row key={row.dataFileId} row={row} />
+                        {filtered.map((row,index) =>
+                            <Row key={index} row={row} />
                         )}
                     </TableBody>
                 </Table>
             </TableContainer>
+            {isVersion ? <Button style ={{float:'right', marginTop:'10px'}}
+                                 onClick = {() => {
+                                     setFiltered(data);
+                                     setIsVersion(false);
+                                 }}>Reset</Button> :<div></div>}
         </div>
     );
 
@@ -108,6 +113,13 @@ export default function CollapsibleTable() {
             await fetchData();
             alert('Data Deleted');
         }
+
+        const seeVersions = async() => {
+            const dataWithId = await getDataWithId(dataFileId);
+            setFiltered(dataWithId);
+            setIsVersion(true);
+        };
+
         return (
             <React.Fragment>
                 <TableRow className = {classes.root}>
@@ -156,6 +168,8 @@ export default function CollapsibleTable() {
                                 </Table>
                                 <div className = 'outer'>
                                     <div className = 'inner'>
+                                        <Button variant = 'outline-warning' onClick = {seeVersions}
+                                         style = {{marginRight:'10px'}}>See All Versions</Button>
                                         <Link to = {`/import/${row.dataFileId}`}>
                                             <Button variant = 'outline-success' style = {{marginRight:'10px'}}
                                                 >Add Version</Button>
