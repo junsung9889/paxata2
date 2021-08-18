@@ -1,47 +1,55 @@
 import { Modal, Button } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import { Form, FormControl } from 'react-bootstrap';
+import {useForm} from 'react-hook-form';
 
-
-function SearchOptions(){
-    function handleCategory(){
-
-    }
-
-    function handleGL(){
-
-    }
-
-    function handleValue(){
-
-    }
+function SearchOptions({options,setOptions,index}){
+    const {register, getValues} = useForm();
+    
+    const onChange = ()=>{
+      const copiedOptions = options.slice();
+      copiedOptions[index] = getValues();
+      setOptions(copiedOptions);
+    };
 
     return(
-      <Form.Group>
-          Form place
-      </Form.Group>
+      <Form style={{display:'flex'}} onChange = {onChange}>
+        <Form.Select aria-label="Default select example" {...register('first')}>
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </Form.Select>
+        <Form.Select aria-label="Default select example" {...register('second')}>
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </Form.Select>
+        <Form.Select aria-label="Default select example" {...register('third')}>
+        <option>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+        </Form.Select>
+      </Form>
     );
 }
-
 
 export default function FilterModal(props) {
   const [show, setShow] = useState(false);
   const [filter, setFilter] = useState([]);
-
-  let key = 0;
-
+  const [options,setOptions] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const {data} = props;
-  const {setData} = props;
-  const {filterOpt} = props;
+  const onClick = () => {
+      console.log(options);
+  };
 
   function clickAdd(){
-    setFilter(filter.concat({'key': key, 'category': '', 'gl': '', 'value': 0}));
-    console.log(filter);
+    setFilter(filter.concat(''));
+    setOptions(options.concat({}));
   }
-
 
   return (
     <>
@@ -55,8 +63,9 @@ export default function FilterModal(props) {
         </Modal.Header>
         <Modal.Body>
             <Form>
-                {filter.map((f) =>
-                <SearchOptions key={f.key}/>)}
+                {
+                  filter.map((s,index) => <SearchOptions options = {options} setOptions = {setOptions} index = {index}></SearchOptions>)
+                }
             </Form>
             <div style={{display: 'flex'}}>
                 <Button onClick={clickAdd} style={{marginLeft: 'auto'}}>+</Button>
@@ -64,7 +73,7 @@ export default function FilterModal(props) {
         </Modal.Body>
         <Modal.Footer>
 
-          <Button variant="warning" onClick={handleClose}>
+          <Button variant="warning" onClick = {onClick}>
             Apply
           </Button>
         </Modal.Footer>
