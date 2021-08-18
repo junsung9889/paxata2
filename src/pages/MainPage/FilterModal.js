@@ -17,7 +17,15 @@ function SearchOptions(props){
         onChange();
     }, []);
 
+    function clickDel(event) {
+        let copiedOptions = options.slice();
+        copiedOptions.splice(index, 1);
+        setOptions(copiedOptions);
+        console.log(options);
+    }
+    
     return(
+        <>
       <Form.Group style={{display:'flex'}} onChange = {onChange}>
         <Form.Select value={options[index].opt1} aria-label="Default select example" {...register('opt1')}>
           <option value=''>Select</option>
@@ -34,7 +42,10 @@ function SearchOptions(props){
         </Form.Select>
         <Form.Control type='text' value={options[index].opt3||''} aria-label="Default select example" {...register('opt3')}>
         </Form.Control>
+          <Button onClick={async() => await clickDel()}>x</Button>
       </Form.Group>
+            <br/>
+        </>
     );
 }
 
