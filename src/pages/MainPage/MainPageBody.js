@@ -61,7 +61,7 @@ export default function CollapsibleTable() {
                     search();}}
                 />
 
-                <FilterModal></FilterModal>
+                <FilterModal origin={data} filtered={filtered} setFiltered={setFiltered}></FilterModal>
             </div>
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
