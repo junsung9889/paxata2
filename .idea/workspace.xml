@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="filter">
-      <change afterPath="$PROJECT_DIR$/src/apis/DeleteTagAPI.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/apis/PostTagAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
-    </list>
+    <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="filter" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +86,7 @@
       <workItem from="1628813148960" duration="295000" />
       <workItem from="1628813564352" duration="6166000" />
       <workItem from="1629245478458" duration="3135000" />
-      <workItem from="1629331862904" duration="3595000" />
+      <workItem from="1629331862904" duration="4066000" />
     </task>
     <servers />
   </component>
