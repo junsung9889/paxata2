@@ -1,5 +1,6 @@
 import {useState } from "react";
 import {Offcanvas ,Form, Row, Col, Button} from "react-bootstrap";
+import { getUser, postUser } from "../../apis/UserAPI";
 
 export default function AdminPageHeader({users, setUsers}){
     const [userName,setUserName] = useState('');
@@ -14,6 +15,9 @@ export default function AdminPageHeader({users, setUsers}){
     const [retype, setRetype] = useState('');
     const [isSame, setIsSame] = useState(false);
     const [correctPW, setCorrectPW] = useState(false);
+    const fetchUsers = async()=>{
+        setUsers(await getUser());
+    };
 
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
@@ -102,7 +106,9 @@ export default function AdminPageHeader({users, setUsers}){
                             </Form.Group>
                         </Row>
                         <Button variant = 'outline-primary' style = {{float: 'right'}}
-                            onClick = {handleClose} disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Add</Button>
+                            onClick = {async()=> {await postUser(userName,userEmail,userPassword,userRoles);
+                                await fetchUsers(); handleClose();}}
+                                disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Add</Button>
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>

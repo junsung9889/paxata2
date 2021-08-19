@@ -34,8 +34,7 @@ export default function AdminPageBody({users,setUsers}){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const fetchUsers = async()=>{
-        const userData = await getUser();
-        setUsers(userData);
+        setUsers(await getUser());
     };
     useEffect(()=> fetchUsers(),[]);
 
@@ -140,7 +139,7 @@ export default function AdminPageBody({users,setUsers}){
                         </Row>
                         <Button variant = 'outline-success' style = {{float: 'right'}}
                             onClick = {async() => {await putUser(user.userId,userName,userEmail,userPassword,userRoles);
-                                await fetchUsers(); handleClose();}} disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Edit</Button>
+                                fetchUsers(); handleClose();}} disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Edit</Button>
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
