@@ -1,7 +1,8 @@
-import {FormControl, Button} from 'react-bootstrap'
-import {useEffect, useState} from 'react';
+import {FormControl, Button, Modal} from 'react-bootstrap'
+import {useEffect, useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -18,7 +19,10 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {getData} from '../../apis/ExportAPI';
 import DeleteAPI from '../../apis/DeleteAPI';
 import GetTagAPI from '../../apis/GetTagAPI';
+import PostTagAPI from '../../apis/PostTagAPI';
+import DeleteTagAPI from '../../apis/DeleteTagAPI';
 import FilterModal from './FilterModal';
+import InputGroup from 'react-bootstrap/InputGroup'
 
 const useRowStyles = makeStyles({
     root: {
@@ -32,6 +36,7 @@ export default function CollapsibleTable() {
     const [data,setData] = useState([]);
     const [filtered, setFiltered] = useState([]);
     let inputText = "";
+
 
     async function fetchData(){
         const files = await getData();
@@ -90,15 +95,25 @@ export default function CollapsibleTable() {
         const { row } = props;
         const [open, setOpen] = useState(false);
         const [tag, setTag] = useState([]);
+        const [tagBtn, setTagBtn] = useState(true);
         const classes = useRowStyles();
         const dataFileId = row.dataFileId;
-        //console.log(row)
         async function getTag(){
             const tagData = await GetTagAPI({dataFileId});
             if(Array.isArray(tagData) && tagData.length !== 0){
                 setTag(tagData);
             }
         }
+        async function postTag(tagName){
+            await PostTagAPI({dataFileId, tagName});
+            getTag();
+        }
+
+        async function deleteTag(tagId){
+            await DeleteTagAPI({tagId});
+            getTag();
+        }
+
         useEffect(()=>{
             getTag();
         },[]);
@@ -119,10 +134,26 @@ export default function CollapsibleTable() {
                     <TableCell align="right">{row.state}</TableCell>
                     <TableCell align="right">{row.rowCount}</TableCell>
                     <TableCell align="right">{
-                        tag.map((filtered) => (
-                            <Button key = {filtered.name} variant = 'info' style ={{marginLeft:'5px'}}>{filtered.name}</Button>
+                        tag.map((tags) => (
+                            <Button key = {tags.name} variant = 'info' style ={{margin:'2px'}}
+                            onClick={()=>{window.confirm('Are you sure to delete tag?') &&
+                            deleteTag(tags.tagId)}}>{tags.name}</Button>
                         ))
-                    }</TableCell>
+                    }
+                        {!tagBtn && <input autoFocus size='sm' onKeyDown={(event)=>{
+                            if(event.keyCode == 27){
+                                setTagBtn(!tagBtn);
+                            }
+                            else if(event.keyCode == 13){
+                                if(event.target.value !== ''){
+                                    postTag(event.target.value);
+                                    setTagBtn(!tagBtn);
+                                }
+                            }
+                        }} />}
+                        {tagBtn && <Button size='sm' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
+
+                    </TableCell>
                     <TableCell align="right">
                         <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
                             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}

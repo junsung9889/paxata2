@@ -4,17 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
+    <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="filter">
+      <change afterPath="$PROJECT_DIR$/src/apis/DeleteTagAPI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/apis/PostTagAPI.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/FilterModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/FilterModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1wLDZzVQul8Rz7jlmJCa5fuyF4I" />
   <component name="ProjectViewState">
@@ -74,6 +91,7 @@
       <workItem from="1628813148960" duration="295000" />
       <workItem from="1628813564352" duration="6166000" />
       <workItem from="1629245478458" duration="3135000" />
+      <workItem from="1629331862904" duration="3595000" />
     </task>
     <servers />
   </component>
