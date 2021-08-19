@@ -5,18 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="filter">
-      <change afterPath="$PROJECT_DIR$/src/pages/VersionPage/VersionPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/VersionPage/VersionPage.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/VersionPage/VersionPageBody.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/VersionPage/VersionPageHeader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/DeleteAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/DeleteAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/ExportAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ExportAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MainPage/MainPageBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/apis/UserAPI.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +94,7 @@
       <workItem from="1628813148960" duration="295000" />
       <workItem from="1628813564352" duration="6166000" />
       <workItem from="1629245478458" duration="3135000" />
-      <workItem from="1629331862904" duration="15122000" />
+      <workItem from="1629331862904" duration="16817000" />
     </task>
     <servers />
   </component>
