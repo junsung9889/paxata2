@@ -1,8 +1,11 @@
+/* eslint no-restricted-globals: ["off"] */
 import { Form,Button ,Row, Col} from "react-bootstrap";
 import React, {useState, useEffect} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
+import {exportData} from '../../apis/ExportAPI';
+
 
 
 
@@ -155,9 +158,25 @@ export default function ExportPageBody(props){
         setFormat(format=>format=toFormat(event.target.value));
         setName(name=>name=formatName(event.target.value, name));
     }
-    function handleExportClick(event){
-        console.log("다음주에")
-        console.log("구현!")
+
+    function handleExportClick(){
+        const fileId = location.pathname.split('/')[2]
+        let version = ''
+
+        if(format === 'text/csv'){
+            exportData(fileId, version, format, sepOpts, name);
+        }
+        else if(format === 'text/XML'){
+            exportData(fileId, version, format, xmlOpts, name);
+        }
+        else if(format === 'text/JSON'){
+            exportData(fileId, version, format, jsonOpts, name);
+        }
+        else{
+            exportData(fileId, version, format, [], name)
+        }
+
+
     }
 
     const viewFormat = toViewFormat(format);
