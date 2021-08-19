@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="filter">
-      <change afterPath="$PROJECT_DIR$/src/apis/UserAPI.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/ExportAPI.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/apis/ExportAPI.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ExportPage/ExportPageBody.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPageBody.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
