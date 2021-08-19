@@ -1,13 +1,13 @@
 import axios from "axios";
 import fileDownload from 'js-file-download';
 
-export async function getData(){
+export async function getData(dataVersion='*/-1'){
     const name = sessionStorage.getItem("name");
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
     let data = null;
-    await axios.get('/rest/library/data/*/-1',{
+    await axios.get(`/rest/library/data/${dataVersion}`,{
         headers: {
             'Authorization': basicAuth,
         }
@@ -20,14 +20,14 @@ export async function getData(){
     return data;
 }
 
-export async function getDataWithId(fileId){
+export async function getDataWithId(fileId, version=-1){
     const name = sessionStorage.getItem("name");
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
     let data1 = null;
 
-    await axios.get(`/rest/library/data/${fileId}`,{
+    await axios.get(`/rest/library/data/${fileId}/${version}`,{
         headers: {
             'Authorization': basicAuth,
         }
@@ -65,7 +65,7 @@ function exportNormal(auth, fileId, version, format, name){
     fixedFormat = fixedFormat.toLowerCase();
 
     axios({
-        url: `/rest/datasource/exports/local/${fileId}`,
+        url: `/rest/datasource/exports/local/${fileId}/${version}`,
         method: 'post',
         headers: {
             'Authorization': auth,
@@ -83,7 +83,7 @@ function exportNormal(auth, fileId, version, format, name){
 
 function exportCsv(auth, fileId, version, options, name){
     axios({
-        url: `/rest/datasource/exports/local/${fileId}`,
+        url: `/rest/datasource/exports/local/${fileId}/${version}`,
         method: 'post',
         headers: {
             'Authorization': auth,

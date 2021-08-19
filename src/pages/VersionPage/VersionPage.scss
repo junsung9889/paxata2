@@ -1,0 +1,42 @@
+@import '../shared.scss';
+
+.searchBar{
+    width:40%;
+}
+.mainButton{
+    @include headerButton;
+}
+table{
+    margin-top: 10px;
+    /*border: gray 1px;*/
+    text-align: center;
+}
+
+td{
+    vertical-align: middle;
+}
+.details{
+    margin-bottom: 20px;
+}
+.details-title{
+    padding:10px;
+    margin-left: 3px;
+    font-size: x-large;
+}
+
+.outer{
+    display: flex;
+    flex-direction: column;
+    padding:10px;
+}
+.inner{
+    align-self: flex-end;
+}
+.bodyHeader{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.filter-btn{
+    margin-left: auto;
+}
