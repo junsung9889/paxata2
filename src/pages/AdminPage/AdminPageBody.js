@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Table, Offcanvas ,Form, Row, Col, Button} from "react-bootstrap";
+import { useEffect, useState, useRef } from "react";
+import { Table, Offcanvas ,Form, Row, Col, Button, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { getUser, putUser } from "../../apis/UserAPI";
 
 export default function AdminPageBody(){
@@ -9,9 +9,12 @@ export default function AdminPageBody(){
     const [userEmail,setUserEmail] = useState(user.email);
     const [userPassword,setUserPassword] = useState('');
     const [userRoles,setUserRoles] = useState([]);
+    const [retype, setRetype] = useState('');
+    const [isSame, setIsSame] = useState(false);
     const roles = ['Automation','RemoteAccess','ResourceAdmin','SuperUser','Admin','PowerUser'];
     const [checkedState, setCheckedState] = useState(new Array(roles.length).fill(false));
     const [show, setShow] = useState(false);
+    const [correctPW, setCorrectPW] = useState(false);
 
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
@@ -35,8 +38,31 @@ export default function AdminPageBody(){
         const userData = await getUser();
         setUsers(userData);
     };
-
     useEffect(()=> fetchUsers(),[]);
+
+    function chkPW(e){
+        const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*+=]).{8,}$/;
+
+        if(false === reg.test(e.target.value)) {
+            setCorrectPW(false);
+        }else {
+            setCorrectPW(true);
+        }
+
+        if(retype !== e.target.value) {
+            setIsSame(false);
+        }else {
+            setIsSame(true);
+        }
+    }
+
+    function chkSame(e){
+        if(userPassword !== e.target.value) {
+            setIsSame(false);
+        }else {
+            setIsSame(true);
+        }
+    }
 
     return(
         <>
@@ -88,15 +114,19 @@ export default function AdminPageBody(){
                         <Row>
                             <Form.Group as={Col} className="mb-3 position-relative">
                                 <Form.Label >New Password</Form.Label>
-                                <Form.Control size = 'sm' type="password" isInvalid = 'true'
-                                    onChange = {(e)=>{setUserPassword(e.target.value)}}/>
+                                <Form.Control size = 'sm' type="password" isInvalid = {userPassword !== '' && !correctPW}
+                                              onChange = {(e)=>{setUserPassword(e.target.value); chkPW(e)}}/>
                                 <Form.Control.Feedback type="invalid" tooltip>
-                                    hello
+                                    The password must contain at least one number, one lowercase letter, one uppercase letter and one special character (!@#$%^&*+=), and at least 8 characters.
                                 </Form.Control.Feedback>
                             </Form.Group>
-                            <Form.Group as={Col} className="mb-3">
+                            <Form.Group as={Col} className="mb-3 position-relative">
                                 <Form.Label >Re-type New</Form.Label>
-                                <Form.Control size = 'sm' type="password"/>
+                                <Form.Control size = 'sm' type="password" isInvalid = {retype !== '' && !isSame}
+                                              onChange = {(e)=>{setRetype(e.target.value); chkSame(e)}}/>
+                                <Form.Control.Feedback type="invalid" tooltip>
+                                    Not Same
+                                </Form.Control.Feedback>
                             </Form.Group>
                         </Row>
                         <Row>
@@ -111,7 +141,7 @@ export default function AdminPageBody(){
                         </Row>
                         <Button variant = 'outline-success' style = {{float: 'right'}}
                             onClick = {async() => {await putUser(user.userId,userName,userEmail,userPassword,userRoles);
-                                await fetchUsers(); handleClose();}}>Edit</Button>
+                                await fetchUsers(); handleClose();}} disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Edit</Button>
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>
