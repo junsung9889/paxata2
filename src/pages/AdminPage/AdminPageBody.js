@@ -86,10 +86,13 @@ export default function AdminPageBody(){
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Group as={Col} className="mb-3">
+                            <Form.Group as={Col} className="mb-3 position-relative">
                                 <Form.Label >New Password</Form.Label>
-                                <Form.Control size = 'sm' type="password" 
+                                <Form.Control size = 'sm' type="password" isInvalid = 'true'
                                     onChange = {(e)=>{setUserPassword(e.target.value)}}/>
+                                <Form.Control.Feedback type="invalid" tooltip>
+                                    hello
+                                </Form.Control.Feedback>
                             </Form.Group>
                             <Form.Group as={Col} className="mb-3">
                                 <Form.Label >Re-type New</Form.Label>
