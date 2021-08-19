@@ -18,8 +18,8 @@ function NavigationBar(){
                 style={{ maxHeight: '100px' }}
                 navbarScroll
             >
-            <Nav.Link href="#action1" className = "text-light">Home</Nav.Link>
-            <Nav.Link href="#action2" className = "text-light">Link</Nav.Link>
+            <Nav.Link href="/main" className = "text-light">Library</Nav.Link>
+            <Nav.Link href="/admin" className = "text-light">Admin</Nav.Link>
             </Nav>
         </Navbar.Collapse>
         <div style ={{float: 'right'}}>

@@ -1,0 +1,8 @@
+@import '../shared.scss';
+
+.adminButton{
+    @include headerButton;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
+}
