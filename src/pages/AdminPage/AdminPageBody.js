@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Table, Offcanvas ,Form, Row, Col, Button, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { getUser, putUser } from "../../apis/UserAPI";
 
-export default function AdminPageBody(){
-    const [users,setUsers] = useState([]);
+export default function AdminPageBody({users,setUsers}){
     const [user,setUser] = useState({});
     const [userName,setUserName] = useState(user.name);
     const [userEmail,setUserEmail] = useState(user.email);

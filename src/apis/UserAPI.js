@@ -51,3 +51,29 @@ export async function putUser(userId, userName, email, password, roles){
     });
     return data;
 }
+
+export async function postUser(userName, email, userPassword, roles){
+    const name = sessionStorage.getItem("name");
+    const password = sessionStorage.getItem("password");
+    const credentials = Buffer.from(name + ':' + password).toString('base64');
+    const basicAuth = 'Basic ' + credentials;
+    const rolesText = roles.join(',');
+
+    axios({
+        url: `/rest/users`,
+        method: 'post',
+        headers: {
+            'Authorization': basicAuth,
+        },
+        params: {
+            name: userName,
+            email: email,
+            password: userPassword,
+            roles: rolesText,
+        },
+    }).then(function(response) {
+        console.log(response);
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
