@@ -8,6 +8,7 @@ export async function getUser(){
     let data = null;
 
     await axios.get('/rest/users',{
+
         headers: {
             'Authorization': basicAuth,
         }
