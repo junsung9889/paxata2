@@ -9,7 +9,7 @@ import { BrowserRouter, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename = '/'>
         <Route exact path = '/' component = {LoginPage}></Route>
         <Route path = '/main' component = {MainPage}></Route>
         <Route path = '/import' component = {ImportPage}></Route>
