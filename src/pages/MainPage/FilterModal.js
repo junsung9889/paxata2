@@ -26,13 +26,13 @@ function SearchOptions(props){
     
     return(
         <>
-      <Form.Group style={{display:'flex'}} onChange = {onChange}>
-        <Form.Select value={options[index].opt1} aria-label="Default select example" {...register('opt1')}>
+      <Form.Group style={{display:'flex', justifyContent:'space-between'}} onChange = {onChange}>
+        <Form.Select style = {{width:'28%'}} value={options[index].opt1} aria-label="Default select example" {...register('opt1')}>
           <option value=''>Select</option>
           <option value="version">Version</option>
           <option value="rowCount">Row</option>
         </Form.Select>
-        <Form.Select value={options[index].opt2} aria-label="Default select example" {...register('opt2')}>
+        <Form.Select style = {{width:'28%'}} value={options[index].opt2} aria-label="Default select example" {...register('opt2')}>
           <option value=''>Select</option>
             <option value=">=">{'>='}</option>
             <option value=">">{'>'}</option>
@@ -40,9 +40,9 @@ function SearchOptions(props){
             <option value="<">{`<`}</option>
             <option value="<=">{`<=`}</option>
         </Form.Select>
-        <Form.Control type='text' value={options[index].opt3||''} aria-label="Default select example" {...register('opt3')}>
+        <Form.Control style = {{width:'30%'}} type='text' value={options[index].opt3||''} aria-label="Default select example" {...register('opt3')}>
         </Form.Control>
-          <Button onClick={() => clickDel()}>x</Button>
+          <Button variant = 'outline-danger' style ={{width:'8%'}} onClick={() => clickDel()}>-</Button>
       </Form.Group>
             <br/>
         </>
@@ -108,7 +108,7 @@ export default function FilterModal(props) {
                 }
             </Form>
             <div style={{display: 'flex'}}>
-                <Button onClick={clickAdd} style={{marginLeft: 'auto'}}>+</Button>
+                <Button variant = 'outline-primary'onClick={clickAdd} style={{marginLeft: 'auto'}}>+</Button>
             </div>
         </Modal.Body>
         <Modal.Footer>

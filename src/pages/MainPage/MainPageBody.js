@@ -163,7 +163,7 @@ export default function CollapsibleTable() {
                                 }
                             }
                         }} />}
-                        {tagBtn && <Button size='sm' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
+                        {tagBtn && <Button variant = 'outline-info'size='sm' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
 
                     </TableCell>
                     <TableCell align="right">
