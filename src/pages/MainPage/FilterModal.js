@@ -66,19 +66,19 @@ export default function FilterModal(props) {
           const opt3 = option.opt3;
           switch(opt2){
               case ">=":
-                  copied = copied.filter(a => a[opt1] >= opt3);
+                  copied = copied.filter(a => a[opt1] >= parseInt(opt3));
                   break;
               case ">":
                   copied = copied.filter(a => a[opt1] > parseInt(opt3));
                   break;
               case "==":
-                  copied = copied.filter(a => a[opt1] === opt3);
+                  copied = copied.filter(a => a[opt1] === parseInt(opt3));
                   break;
               case "<":
-                  copied = copied.filter(a => a[opt1] < opt3);
+                  copied = copied.filter(a => a[opt1] < parseInt(opt3));
                   break;
               case "<=":
-                  copied = copied.filter(a => a[opt1] <= opt3);
+                  copied = copied.filter(a => a[opt1] <= parseInt(opt3));
                   break;
               default:
                   break;
