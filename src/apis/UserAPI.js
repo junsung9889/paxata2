@@ -6,7 +6,6 @@ export async function getUser(){
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
     let data = null;
-
     await axios.get('/rest/users',{
 
         headers: {
@@ -21,12 +20,11 @@ export async function getUser(){
     return data;
 }
 
-export async function putUser(userId, userName, email, password, roles){
+export function putUser(userId, userName, email, password, roles){
     const name = sessionStorage.getItem("name");
     const pw = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + pw).toString('base64');
     const basicAuth = 'Basic ' + credentials;
-    let data = null;
     const rolesText = roles.join(',');
     let params = {
         userId: userId,
@@ -49,16 +47,14 @@ export async function putUser(userId, userName, email, password, roles){
     }).catch(function(error) {
         console.log(error);
     });
-    return data;
 }
 
-export async function postUser(userName, email, userPassword, roles){
+export function postUser(userName, email, userPassword, roles){
     const name = sessionStorage.getItem("name");
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
     const rolesText = roles.join(',');
-
     axios({
         url: `/rest/users`,
         method: 'post',
@@ -71,6 +67,25 @@ export async function postUser(userName, email, userPassword, roles){
             password: userPassword,
             roles: rolesText,
         },
+    }).then(function(response) {
+        console.log(response);
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+
+export function deleteUser(userId){
+    const name = sessionStorage.getItem("name");
+    const password = sessionStorage.getItem("password");
+    const credentials = Buffer.from(name + ':' + password).toString('base64');
+    const basicAuth = 'Basic ' + credentials;
+
+    axios({
+        url: `/rest/users/${userId}`,
+        method: 'delete',
+        headers: {
+            'Authorization': basicAuth,
+        }
     }).then(function(response) {
         console.log(response);
     }).catch(function(error) {

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Table, Offcanvas ,Form, Row, Col, Button, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { getUser, putUser } from "../../apis/UserAPI";
+import { deleteUser, getUser, putUser } from "../../apis/UserAPI";
 
 export default function AdminPageBody({users,setUsers}){
     const [user,setUser] = useState({});
@@ -65,7 +65,7 @@ export default function AdminPageBody({users,setUsers}){
     return(
         <>
             <Table striped bordered hover variant = 'light'
-                style = {{width:'98%', margin:'0 auto', marginTop:'20px'}}>
+                style = {{width:'98%', margin:'0 auto', marginTop:'20px', marginBottom:'20px'}}>
                 <thead>
                     <tr>
                     <th>Name</th>
@@ -137,9 +137,13 @@ export default function AdminPageBody({users,setUsers}){
                                 }
                             </Form.Group>
                         </Row>
-                        <Button variant = 'outline-success' style = {{float: 'right'}}
-                            onClick = {async() => {await putUser(user.userId,userName,userEmail,userPassword,userRoles);
-                                fetchUsers(); handleClose();}} disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Edit</Button>
+                        <div>
+                            <Button variant = 'outline-success' style = {{float: 'right'}}
+                                onClick = {async() => {await putUser(user.userId,userName,userEmail,userPassword,userRoles);
+                                    setTimeout(() => fetchUsers(),500); handleClose();}} disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Edit</Button>
+                            <Button variant = 'outline-danger' style = {{float: 'right',marginRight:'10px'}}
+                                onClick = {async()=> {await deleteUser(user.userId); setTimeout(() => fetchUsers(),500); handleClose();}}>Delete</Button>
+                        </div>
                     </Form>
                 </Offcanvas.Body>
             </Offcanvas>

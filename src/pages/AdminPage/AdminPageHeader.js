@@ -107,7 +107,7 @@ export default function AdminPageHeader({users, setUsers}){
                         </Row>
                         <Button variant = 'outline-primary' style = {{float: 'right'}}
                             onClick = {async()=> {await postUser(userName,userEmail,userPassword,userRoles);
-                                await fetchUsers(); handleClose();}}
+                                setTimeout(() => fetchUsers(),500); handleClose();}}
                                 disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Add</Button>
                     </Form>
                 </Offcanvas.Body>
