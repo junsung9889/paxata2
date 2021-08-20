@@ -8,9 +8,13 @@ import ExportPageHeader from './ExportPageHeader';
 import ExportPageBody from './ExportPageBody';
 
 function ExportPage(){
+    let version = location.pathname.split('/')[3];
+    if(version === undefined || version === ''){
+        version = -1;
+    }
     const [data,setData] = useState(null);
     async function fetchData(){
-        const files = await getDataWithId(location.pathname.split('/')[2]);
+        const files = await getDataWithId(location.pathname.split('/')[2], version);
         setData(files);
     }
     useEffect(() => {

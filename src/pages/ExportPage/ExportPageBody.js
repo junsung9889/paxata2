@@ -7,8 +7,6 @@ import Grid from '@material-ui/core/Grid'
 import {exportData} from '../../apis/ExportAPI';
 
 
-
-
 function SeparatorOptions(props){
     const {options} = props;
     const {setOptions} = props;
@@ -110,6 +108,10 @@ function JsonOptions(props){
 }*/
 
 export default function ExportPageBody(props){
+    let version = location.pathname.split('/')[3];
+    if(version === undefined || version === ''){
+        version = -1;
+    }
     const basicSepOpts = [',', '\\n', true, true, false] /// [ColSep, RowSep, Header, Quotes, ByteOrderMarks]
     const {data} = props;
     const [name, setName] = useState('');
@@ -130,7 +132,7 @@ export default function ExportPageBody(props){
         var nameList = _name.split('.');
 
         if(nameList[0] === ''){
-            nameList = data[0].source.name.split('.');
+            nameList = data.source.name.split('.');
         }
 
         if(nameList.length > 1){
@@ -160,8 +162,10 @@ export default function ExportPageBody(props){
     }
 
     function handleExportClick(){
-        const fileId = location.pathname.split('/')[2]
-        let version = ''
+        const fileId = location.pathname.split('/')[2];
+
+
+        console.log(version);
 
         if(format === 'text/csv'){
             exportData(fileId, version, format, sepOpts, name);
@@ -182,9 +186,9 @@ export default function ExportPageBody(props){
     const viewFormat = toViewFormat(format);
 
     useEffect(() => {
-        setName(name => name=data[0].source.name);
-        setFormat(format => format=data[0].source.metadata.mimeType);
-        setEncoding(encoding => encoding=data[0].source.options.encoding);
+        setName(name => name=data.source.name);
+        setFormat(format => format=data.source.metadata.mimeType);
+        setEncoding(encoding => encoding=data.source.options.encoding);
     },[]);
 
     return(

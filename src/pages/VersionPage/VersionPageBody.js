@@ -1,3 +1,5 @@
+/* eslint no-restricted-globals: ["off"] */
+
 import {FormControl, Button, Modal} from 'react-bootstrap'
 import {useEffect, useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
@@ -21,7 +23,6 @@ import DeleteAPI from '../../apis/DeleteAPI';
 import GetTagAPI from '../../apis/GetTagAPI';
 import PostTagAPI from '../../apis/PostTagAPI';
 import DeleteTagAPI from '../../apis/DeleteTagAPI';
-import FilterModal from './FilterModal';
 import InputGroup from 'react-bootstrap/InputGroup'
 
 const useRowStyles = makeStyles({
@@ -36,10 +37,13 @@ export default function CollapsibleTable() {
     const [data,setData] = useState([]);
     const [filtered, setFiltered] = useState([]);
     let inputText = "";
+    const [isVersion, setIsVersion] = useState(false);
+
+    const fileId = location.pathname.split('/')[2]
 
 
     async function fetchData(){
-        const files = await getData();
+        const files = await getData(fileId);
         setData(files);
     }
     useEffect(() => {
@@ -65,7 +69,6 @@ export default function CollapsibleTable() {
                     onChange = {(e) => {inputText = e.target.value;
                     search();}}
                 />
-                <FilterModal origin={data} filtered={filtered} setFiltered={setFiltered}></FilterModal>
             </div>
             <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
@@ -87,6 +90,9 @@ export default function CollapsibleTable() {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Link to = {`/main`}>
+                <Button style ={{float:'right', marginTop:'10px'}}>←</Button>
+            </Link>
         </div>
     );
 
@@ -117,11 +123,17 @@ export default function CollapsibleTable() {
             getTag();
         },[]);
 
-        async function deleteItem(){
-            DeleteAPI({dataFileId});
+        async function deleteItem(version){
+            DeleteAPI({dataFileId, version});
             await fetchData();
             alert('Data Deleted');
         }
+
+        const seeVersions = async() => {
+            const dataWithId = await getDataWithId(dataFileId);
+            setFiltered(dataWithId);
+            setIsVersion(true);
+        };
 
         return (
             <React.Fragment>
@@ -151,7 +163,7 @@ export default function CollapsibleTable() {
                                 }
                             }
                         }} />}
-                        {tagBtn && <Button variant = 'outline-info'size='sm' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
+                        {tagBtn && <Button size='sm' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
 
                     </TableCell>
                     <TableCell align="right">
@@ -187,16 +199,8 @@ export default function CollapsibleTable() {
                                 </Table>
                                 <div className = 'outer'>
                                     <div className = 'inner'>
-                                        <Link to = {`/version/${row.dataFileId}`}>
-                                            <Button variant = 'outline-warning'
-                                             style = {{marginRight:'10px'}}>See All Versions</Button>
-                                        </Link>
-                                        <Link to = {`/import/${row.dataFileId}`}>
-                                            <Button variant = 'outline-success' style = {{marginRight:'10px'}}
-                                                >Add Version</Button>
-                                        </Link>
                                         <Button variant = 'outline-danger' style = {{marginRight:'10px'}}
-                                                onClick ={()=>deleteItem()}>Delete</Button>
+                                                onClick ={()=>deleteItem(row.version)}>Delete</Button>
                                         <Link to = {`/export/${row.dataFileId}/${row.version}`}>
                                             <Button variant = 'outline-primary'>Export</Button>
                                         </Link>
