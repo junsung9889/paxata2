@@ -1,8 +1,10 @@
 import {useState } from "react";
 import {Offcanvas ,Form, Row, Col, Button} from "react-bootstrap";
 import { getUser, postUser } from "../../apis/UserAPI";
+import { read_csv, transformData } from "./ReadCSV";
 
 export default function AdminPageHeader({users, setUsers}){
+    const [file,setFile] = useState(null);
     const [userName,setUserName] = useState('');
     const [userEmail,setUserEmail] = useState('');
     const [userPassword,setUserPassword] = useState('');
@@ -11,14 +13,13 @@ export default function AdminPageHeader({users, setUsers}){
     const [checkedState, setCheckedState] = useState(new Array(roles.length).fill(false));
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [retype, setRetype] = useState('');
     const [isSame, setIsSame] = useState(false);
+    const [isForm,setIsForm] = useState(true);
     const [correctPW, setCorrectPW] = useState(false);
     const fetchUsers = async()=>{
         setUsers(await getUser());
     };
-
     const handleOnChange = (position) => {
         const updatedCheckedState = checkedState.map((item, index) =>
           index === position ? !item : item
@@ -29,32 +30,36 @@ export default function AdminPageHeader({users, setUsers}){
     };
     function chkPW(e){
         const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*+=]).{8,}$/;
-
-        if(false === reg.test(e.target.value)) {
+        if(false === reg.test(e.target.value)) 
             setCorrectPW(false);
-        }else {
+        else
             setCorrectPW(true);
-        }
-
-        if(retype !== e.target.value) {
+        if(retype !== e.target.value)
             setIsSame(false);
-        }else {
+        else
             setIsSame(true);
-        }
     }
     function chkSame(e){
-        if(userPassword !== e.target.value) {
+        if(userPassword !== e.target.value)
             setIsSame(false);
-        }else {
+        else
             setIsSame(true);
-        }
     }
+    async function updateAndPost(file){
+        const data = read_csv(file);
+        const rt = transformData(data);
+        console.log(rt);
+        //await setCheckedState(rt.slice(3,));
+       // const updatedRoles = roles.filter((role,index)=> rt.slice(3,)[index] === true)
+        //await setUserRoles(updatedRoles);
 
+    }
     return(
         <>
             <div className = "header">
                 <h1 className = 'headerTitle'>Users</h1>
-                <Button className = "adminButton" onClick = {handleShow}>+</Button>
+                <Button className = "adminButton" onClick = {() => {setShow(true); setIsForm(true);}}>+ by Form</Button>
+                <Button className = "adminButton" onClick = {()=>{setShow(true); setIsForm(false);}}>+ by File</Button>
             </div>
             <Offcanvas show={show} onHide={handleClose} placement = 'end'
                 style ={{width: '40vw'}}>
@@ -62,7 +67,9 @@ export default function AdminPageHeader({users, setUsers}){
                 <Offcanvas.Title>Add User</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                    <Form>
+                    {  
+                        isForm?
+                        <Form>
                         <Row>
                             <Form.Group  className="mb-2">
                                 <Form.Label >UserName</Form.Label>
@@ -110,6 +117,16 @@ export default function AdminPageHeader({users, setUsers}){
                                 setTimeout(() => fetchUsers(),500); handleClose();}}
                                 disabled={!((isSame && correctPW) || (userPassword === '' && retype === ''))}>Add</Button>
                     </Form>
+                        :
+                        <Form>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Upload File</Form.Label>
+                                <Form.Control type = "file" onChange = {(e) => {console.log(e.target.files[0]);setFile(e.target.files[0]);}}></Form.Control>
+                            </Form.Group>
+                            <Button variant = 'outline-primary' style = {{float: 'right'}}
+                                onClick = {()=>{updateAndPost(file)}}>Add</Button>
+                        </Form>
+                    }
                 </Offcanvas.Body>
             </Offcanvas>
         </>

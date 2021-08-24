@@ -91,7 +91,7 @@ export default function CollapsibleTable() {
                 </Table>
             </TableContainer>
             <Link to = {`/main`}>
-                <Button style ={{float:'right', marginTop:'10px'}}>←</Button>
+                <Button variant = 'warning' style ={{float:'right', marginTop:'10px'}}>Go Back</Button>
             </Link>
         </div>
     );
@@ -163,7 +163,7 @@ export default function CollapsibleTable() {
                                 }
                             }
                         }} />}
-                        {tagBtn && <Button size='sm' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
+                        {tagBtn && <Button size='sm' variant = 'outline-info' style={{marginLeft: 5}} onClick={()=>{setTagBtn(!tagBtn);}}>+</Button>}
 
                     </TableCell>
                     <TableCell align="right">
