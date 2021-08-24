@@ -46,13 +46,14 @@ export default function AdminPageHeader({users, setUsers}){
             setIsSame(true);
     }
     async function updateAndPost(file){
-        const data = read_csv(file);
-        const rt = transformData(data);
-        console.log(rt);
-        //await setCheckedState(rt.slice(3,));
-       // const updatedRoles = roles.filter((role,index)=> rt.slice(3,)[index] === true)
-        //await setUserRoles(updatedRoles);
-
+        const data = await read_csv(file);
+        const rt = await transformData(data);
+        for (const r of rt){
+            const updatedRoles = roles.filter((role,index)=> r[3][index] === true)
+            postUser(r[0],r[1],r[2],updatedRoles);
+        }
+        setTimeout(() => fetchUsers(),500);
+        handleClose();
     }
     return(
         <>

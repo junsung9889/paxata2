@@ -1,37 +1,35 @@
-export function read_csv(file, row_sep='\n', col_sep=',', isHeader=true){
-    let rows = null;
-    function defineRows(){
-        let rt = ""
+export async function read_csv(file, row_sep='\n', col_sep=',', isHeader=true){
+    const rows = await new Promise((resolve) => {
         const reader = new FileReader();
         reader.readAsBinaryString(file);
-        reader.onload = () => {
-            rt = reader.result;
-
-            return rt;
+        reader.onload = () =>{
+            const result = reader.result.split(row_sep);
+            resolve(result);
         };
-    }
-    defineRows();
+    });
     let _header = []
-    let data = []
     for(const[index, row] of rows.entries()){
-        rows[index] = row.split(col_sep);
+        rows[index] = row.trim().split(col_sep);
     }
     if(isHeader === true){
-        _header = rows.shift();
+        for(let r of rows.shift()){
+            _header.push(r.trim());
+        }
     }
     else{
         for(let i = 0; i < rows[0].length; i++){
-            _header.append(toString(i));
+            _header.push(toString(i));
         }
     }
-
-    for(let row of rows){
+    
+    let data = []
+    for(let row of rows.slice(0,-1)){
         let datum = {}
-        for(let i = 0; i < rows.length; i++){
+        for(let i = 0; i < rows[0].length; i++){
             datum[_header[i]] = row[i];
         }
+        data.push(datum);
     }
-
     return data;
 }
 
@@ -43,27 +41,27 @@ export function transformData(data, isHeader=true){
     }
     else{
         for(let i = 0; i < 9; i++){
-            _header.append(toString(i));
+            _header.push(toString(i));
         }
     }
 
     for(let datum of data){
         let user = []
         let roles = []
-        user.append(datum[_header[0]]);
-        user.append(datum[_header[1]]);
-        user.append(datum[_header[2]]);
+        user.push(datum[_header[0]]);
+        user.push(datum[_header[1]]);
+        user.push(datum[_header[2]]);
         for(let i = 3; i < 9; i++){
             if(datum[_header[i]].toLowerCase().trim() === 'o'){
-                roles.append(true);
+                roles.push(true);
             }
             else{
-                roles.append(false);
+                roles.push(false);
             }
         }
-        user.append(roles);
+        user.push(roles);
 
-        rt.append(user);
+        rt.push(user);
     }
 
     return rt;
