@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Table, Offcanvas ,Form, Row, Col, Button, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { deleteUser, getUser, putUser } from "../../apis/UserAPI";
 
-export default function AdminPageBody({users,setUsers}){
+export default function AdminPageBody({roles,users,setUsers}){
     const [user,setUser] = useState({});
     const [userName,setUserName] = useState(user.name);
     const [userEmail,setUserEmail] = useState(user.email);
@@ -10,8 +10,7 @@ export default function AdminPageBody({users,setUsers}){
     const [userRoles,setUserRoles] = useState([]);
     const [retype, setRetype] = useState('');
     const [isSame, setIsSame] = useState(false);
-    const roles = ['Automation','RemoteAccess','ResourceAdmin','SuperUser','Admin','PowerUser'];
-    const [checkedState, setCheckedState] = useState(new Array(roles.length).fill(false));
+    const [checkedState, setCheckedState] = useState([]);
     const [show, setShow] = useState(false);
     const [correctPW, setCorrectPW] = useState(false);
 
@@ -36,7 +35,10 @@ export default function AdminPageBody({users,setUsers}){
     const fetchUsers = async()=>{
         setUsers(await getUser());
     };
-    useEffect(()=> fetchUsers(),[]);
+    useEffect(()=> {
+        setCheckedState(new Array(roles.length).fill(false));
+        fetchUsers();
+    },[]);
 
     function chkPW(e){
         const reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*+=]).{8,}$/;
@@ -78,9 +80,9 @@ export default function AdminPageBody({users,setUsers}){
                 <tbody>
                     {
                         users.map((u)=>
-                        <tr onClick = {async() => {await setUser(u); await handleChecked(u); await handleShow();}}>
+                        <tr key = {u.name} onClick = {async() => {await setUser(u); await handleChecked(u); await handleShow();}}>
                             <td>{u.name}</td>
-                            <td>{u.roles.join(', ')}</td>
+                            <td>{u.roles.sort().join(', ')}</td>
                             <td>{u.domainName}</td>
                             <td>{u.lastLogin}</td>
                             <td>{u.expiration}</td>
@@ -128,12 +130,12 @@ export default function AdminPageBody({users,setUsers}){
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Roles</Form.Label>
+                            <Form.Group className="mb-3" style ={{display:'flex', flexFlow:'row wrap'}}>
+                                <Form.Label style ={{width:'100%'}}>Roles</Form.Label>
                                 {
                                     roles.map((role,index) => <Form.Check className="mb-1" label = {role}
                                         onChange = {()=>handleOnChange(index)} checked = {checkedState[index]}
-                                    />)
+                                        style ={{width:'50%'}}/>)
                                 }
                             </Form.Group>
                         </Row>

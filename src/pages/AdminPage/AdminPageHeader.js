@@ -1,16 +1,21 @@
-import {useState } from "react";
+import {useState, useEffect } from "react";
 import {Offcanvas ,Form, Row, Col, Button} from "react-bootstrap";
 import { getUser, postUser } from "../../apis/UserAPI";
 import { read_csv, transformData } from "./ReadCSV";
 
-export default function AdminPageHeader({users, setUsers}){
+
+
+export default function AdminPageHeader({roles, users, setUsers}){
     const [file,setFile] = useState(null);
     const [userName,setUserName] = useState('');
     const [userEmail,setUserEmail] = useState('');
     const [userPassword,setUserPassword] = useState('');
     const [userRoles,setUserRoles] = useState([]);
-    const roles = ['Automation','RemoteAccess','ResourceAdmin','SuperUser','Admin','PowerUser'];
-    const [checkedState, setCheckedState] = useState(new Array(roles.length).fill(false));
+    
+    const [checkedState, setCheckedState] = useState([]);
+    useEffect(()=>{
+        setCheckedState(new Array(roles.length).fill(false));
+    },[]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const [retype, setRetype] = useState('');
@@ -45,9 +50,32 @@ export default function AdminPageHeader({users, setUsers}){
         else
             setIsSame(true);
     }
+
+    function exportTemplate(roles){
+        const csv_string = 'UserName,Email,Password,' + roles.join(',') + '\r\n';
+        let downloadLink = document.createElement("a");
+        let blob = new Blob([csv_string], { type: "text/csv;charset=utf-8" });
+        let url = URL.createObjectURL(blob);
+        
+        downloadLink.href = url;
+        downloadLink.download = "template.csv";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }
+
     async function updateAndPost(file){
         const data = await read_csv(file);
-        const rt = await transformData(data);
+        let rt = null;
+        try{
+            const names = users.map(u => u.name);
+            rt = await transformData(data,roles,names);
+        }
+        catch(e){
+            alert(e);
+            //handleClose();
+            return;
+        }
         for (const r of rt){
             const updatedRoles = roles.filter((role,index)=> r[3][index] === true)
             postUser(r[0],r[1],r[2],updatedRoles);
@@ -61,6 +89,7 @@ export default function AdminPageHeader({users, setUsers}){
                 <h1 className = 'headerTitle'>Users</h1>
                 <Button className = "adminButton" onClick = {() => {setShow(true); setIsForm(true);}}>+ by Form</Button>
                 <Button className = "adminButton" onClick = {()=>{setShow(true); setIsForm(false);}}>+ by File</Button>
+                <Button variant = 'warning' className = "adminButton" onClick = {() => {exportTemplate(roles)}}>Download Template</Button>
             </div>
             <Offcanvas show={show} onHide={handleClose} placement = 'end'
                 style ={{width: '40vw'}}>
@@ -104,12 +133,12 @@ export default function AdminPageHeader({users, setUsers}){
                             </Form.Group>
                         </Row>
                         <Row>
-                            <Form.Group className="mb-3">
-                                <Form.Label>Roles</Form.Label>
+                            <Form.Group className="mb-3" style ={{display:'flex', flexFlow:'row wrap'}}>
+                                <Form.Label style ={{width:'100%'}}>Roles</Form.Label>
                                 {
                                     roles.map((role,index) => <Form.Check className="mb-1" label = {role}
                                         onChange = {()=>handleOnChange(index)} checked = {checkedState[index]}
-                                    />)
+                                        style ={{width:'50%'}}/>)
                                 }
                             </Form.Group>
                         </Row>
