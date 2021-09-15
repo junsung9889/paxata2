@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="">
+    <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/apis/UserAPI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPageBody.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPageBody.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/AdminPage/AdminPageHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/AdminPage/AdminPageHeader.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +45,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CSS" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -97,6 +94,12 @@
       <workItem from="1628813564352" duration="6166000" />
       <workItem from="1629245478458" duration="3135000" />
       <workItem from="1629331862904" duration="16817000" />
+      <workItem from="1629937510570" duration="83000" />
+      <workItem from="1629937608234" duration="3304000" />
+      <workItem from="1630042308995" duration="1199000" />
+      <workItem from="1630368222322" duration="967000" />
+      <workItem from="1630371664331" duration="265000" />
+      <workItem from="1630371953110" duration="718000" />
     </task>
     <servers />
   </component>
