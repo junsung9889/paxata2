@@ -1,7 +1,14 @@
 package com.paxata2.backend.pxt.entity;
 
-public class PaxataUser {
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Id;
+
+@Document(collection = "users")
+public class Users {
+    @Id
     private String _id;
+
     private String username;
     private String usernameLowerCase;
     private String email;
