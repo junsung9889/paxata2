@@ -2,8 +2,10 @@ package com.paxata2.backend.pxt.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 @Document(collection = "users")
 public class Users {
     @Id
