@@ -1,9 +1,14 @@
 package com.paxata2.backend.web.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@NoArgsConstructor
+@Getter
 @Entity
 public class User {
     @Id
@@ -15,25 +20,5 @@ public class User {
 
     public String getID() {
         return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getToken() {
-        return Token;
-    }
-
-    public void setToken(String token) {
-        Token = token;
     }
 }
