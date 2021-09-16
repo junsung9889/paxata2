@@ -5,19 +5,18 @@ import com.paxata2.backend.pxt.repository.LoginRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-
 @RestController
+@RequestMapping("/back")
 public class LoginController {
-    private final LoginRepository loginRepository;
+    private LoginRepository loginRepository;
 
+    @Autowired
     public LoginController(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
     }
 
-    @GetMapping("/back/login")
-    public List<PaxataUser> login(){
+    @GetMapping("/login")
+    public Iterable<PaxataUser> login(){
         return loginRepository.findAll();
     }
 }
