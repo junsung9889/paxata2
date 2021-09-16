@@ -1,23 +1,26 @@
 package com.paxata2.backend.pxt.controller;
 
-import com.paxata2.backend.pxt.entity.PaxataUser;
-import com.paxata2.backend.pxt.repository.LoginRepository;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.paxata2.backend.pxt.entity.Users;
+import com.paxata2.backend.pxt.repository.UsersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
 @RestController
+@RequestMapping("/back")
 public class LoginController {
-    private final LoginRepository loginRepository;
+    private final UsersRepository usersRepository;
 
-    public LoginController(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
+    @Autowired
+    public LoginController(UsersRepository loginRepository) {
+        this.usersRepository = loginRepository;
     }
 
-    @GetMapping("/back/login")
-    public List<PaxataUser> login(){
-        return loginRepository.findAll();
+    @RequestMapping("/login")
+    public List<Users> login(){
+        return usersRepository.findAll();
     }
 }
