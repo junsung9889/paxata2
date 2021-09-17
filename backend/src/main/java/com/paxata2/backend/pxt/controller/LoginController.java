@@ -1,23 +1,24 @@
 package com.paxata2.backend.pxt.controller;
 
-import com.paxata2.backend.pxt.entity.PaxataUser;
-import com.paxata2.backend.pxt.repository.LoginRepository;
+import com.paxata2.backend.pxt.entity.Users;
+import com.paxata2.backend.pxt.repository.UsersMongoDBRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 
 @RestController
+@RequestMapping("/back")
+@AllArgsConstructor
 public class LoginController {
-    private final LoginRepository loginRepository;
+    private final UsersMongoDBRepository usersMongoDBRepository;
 
-    public LoginController(LoginRepository loginRepository) {
-        this.loginRepository = loginRepository;
-    }
-
-    @GetMapping("/back/login")
-    public List<PaxataUser> login(){
-        return loginRepository.findAll();
+    @GetMapping("/login")
+    public List<Users> login(){
+        return usersMongoDBRepository.findAll();
     }
 }

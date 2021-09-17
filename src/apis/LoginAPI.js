@@ -2,15 +2,14 @@ import axios from "axios";
 
 export default async function LoginAPI({name, password}){
 
-    const credentials = Buffer.from(name + ':' + password).toString('base64');
-    const basicAuth = 'Basic ' + credentials;
     let isAuthenticated = false;
 
     await axios({
-        url: '/rest/userinfo',
-        method: 'get',
-        headers: {
-            Authorization: basicAuth,
+        url: '/back/login',
+        method: 'post',
+        params: {
+            userName: name,
+            password: password
         }
     }).then(function(response) {
         sessionStorage.setItem("name",name);
