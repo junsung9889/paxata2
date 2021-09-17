@@ -4,9 +4,9 @@ import com.paxata2.backend.pxt.entity.Users;
 import com.paxata2.backend.pxt.repository.UsersMongoDBRepository;
 import com.paxata2.backend.pxt.service.CheckLogin;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.json.simple.JSONObject;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +17,9 @@ import java.util.List;
 public class LoginController {
     private CheckLogin checkLogin;
 
-    @GetMapping("/login")
-    public String loginUser(){
-        return checkLogin.checkUser("superuser", "superuser");
+    @PostMapping("/login")
+    public ResponseEntity loginUser(@RequestParam("userName") String username, @RequestParam("password") String password){
+        System.out.println(username + password);
+        return checkLogin.checkUser(username, password);
     }
 }
