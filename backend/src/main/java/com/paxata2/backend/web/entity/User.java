@@ -1,26 +1,25 @@
 package com.paxata2.backend.web.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@NoArgsConstructor
 @Getter
-@Entity
-@Document(collection = "user")
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name = "user")
 public class User {
     @Id
-    private String ID;
+    private String id ;
     @Column(nullable = false)
-    private String Name;
+    private String username;
     @Column(nullable = false)
-    private String Token;
+    private String token;
 
-    public String getID() {
-        return ID;
-    }
+    public User(String username, String name) {
+        this.id = id;
+        this.username = username;
+        this.token = token; }
 }
