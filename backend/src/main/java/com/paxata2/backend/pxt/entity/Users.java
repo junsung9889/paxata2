@@ -1,6 +1,7 @@
 package com.paxata2.backend.pxt.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
