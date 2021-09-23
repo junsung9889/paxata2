@@ -1,17 +1,15 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-module.exports = function(app) {
+module.exports = (app) => {
     app.use(
-        '/rest',
-        createProxyMiddleware({
-            target: 'http://220.220.220.80:8000',
+        createProxyMiddleware('/back',{
+            target: 'http://localhost:8090',
             changeOrigin: true,
         })
     );
     app.use(
-        '/back',
-        createProxyMiddleware({
-            target: 'http://localhost:8080',
+        createProxyMiddleware('/rest',{
+            target: 'http://220.220.220.80:8000',
             changeOrigin: true,
         })
     );
