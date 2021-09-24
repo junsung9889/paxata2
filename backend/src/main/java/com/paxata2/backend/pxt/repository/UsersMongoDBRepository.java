@@ -8,8 +8,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UsersMongoDBRepository extends MongoRepository<Users, String> {
-    List<Users> findUsersByUsername(String username);
+    Optional<Users> findUsersByUsername(String username);
 }

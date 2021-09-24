@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,13 +24,13 @@ public class CheckLogin {
     }
 
     public ResponseEntity checkUser(String username, String password){
-        List<Users> usersList = usersMongoDBRepository.findUsersByUsername(username);
+        Optional<Users> usersList = usersMongoDBRepository.findUsersByUsername(username);
         System.out.println(usersList);
         if(usersList.isEmpty())
             return new ResponseEntity("ID invalid", HttpStatus.BAD_REQUEST);
         else{
-            String pw = usersList.get(0).password;
-            String hash =  HashUtil.createHash(password,usersList.get(0).id);
+            String pw = usersList.map(users -> users.password).stream().findFirst().get();
+            String hash =  HashUtil.createHash(password,usersList.map(users -> users.id).stream().findFirst().get());
             System.out.println(pw + "\n" + hash);
             if(pw.equals("$PES$:" + hash))
                 return new ResponseEntity("Login Success",HttpStatus.ACCEPTED);

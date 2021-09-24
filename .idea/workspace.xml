@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a00a3fa-d928-46ae-976a-cb3ac322b641" name="Changes" comment="hello">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/jwt/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/jwt/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/jwt/JwtSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/jwt/TokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/service/CustomUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/entity/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/SpringSecurityConfigurationBasicAuth.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/repository/UsersMongoDBRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/repository/UsersMongoDBRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/service/CheckLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/pxt/service/CheckLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +68,7 @@
       <recent name="$PROJECT_DIR$/src/pages/VersionPage" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.App.js">
     <configuration type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:5000">
       <method v="2" />
     </configuration>
@@ -99,6 +109,7 @@
       <workItem from="1630368222322" duration="967000" />
       <workItem from="1630371664331" duration="265000" />
       <workItem from="1630371953110" duration="718000" />
+      <workItem from="1632442320092" duration="972000" />
     </task>
     <task id="LOCAL-00001" summary="hello">
       <created>1631767136570</created>
@@ -144,20 +155,6 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hello" />
     <option name="LAST_COMMIT_MESSAGE" value="hello" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/backend/src/main/java/com/paxata2/backend/BackendApplication.java</url>
-          <line>8</line>
-          <properties class="com.paxata2.backend.BackendApplication" method="main">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
