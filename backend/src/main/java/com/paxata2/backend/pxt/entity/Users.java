@@ -1,13 +1,14 @@
 package com.paxata2.backend.pxt.entity;
 
-import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Data
+@Getter
+@Setter
 @Document(collection = "users")
 public class Users {
     @Id
