@@ -2,7 +2,7 @@ import {FormControl, Button, Modal} from 'react-bootstrap'
 import {useEffect, useState, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import HelloAPI from '../../apis/HelloApi';
+import HelloAPI from '../../apis/HelloAPI';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
