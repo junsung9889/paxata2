@@ -15,6 +15,7 @@ export default async function LoginAPI({name, password}){
         sessionStorage.setItem("name",name);
         sessionStorage.setItem("password",password);
         isAuthenticated = true;
+        console.log(response, response.data);
         alert(response.data);
     }).catch(function(error) {
         alert(error.response.data);

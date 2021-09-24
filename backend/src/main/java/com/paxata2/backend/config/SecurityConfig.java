@@ -5,18 +5,14 @@ import com.paxata2.backend.jwt.JwtAccessDeniedHandler;
 import com.paxata2.backend.jwt.JwtAuthenticationEntryPoint;
 import com.paxata2.backend.jwt.TokenProvider;
 import com.paxata2.backend.pxt.service.CustomPwEncoder;
-import com.paxata2.backend.pxt.util.HashUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.*;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

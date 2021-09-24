@@ -5,8 +5,6 @@ import com.paxata2.backend.jwt.TokenProvider;
 import com.paxata2.backend.pxt.entity.Users;
 import com.paxata2.backend.pxt.repository.UsersMongoDBRepository;
 import com.paxata2.backend.pxt.util.HashUtil;
-import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +13,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,10 +26,6 @@ public class CheckLogin {
         this.usersMongoDBRepository = usersMongoDBRepository;
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
-    }
-
-    public List<Users> getUsers(){
-        return usersMongoDBRepository.findAll();
     }
 
     public ResponseEntity checkUser(String username, String password){
