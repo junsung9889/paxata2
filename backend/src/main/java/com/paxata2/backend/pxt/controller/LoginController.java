@@ -15,4 +15,9 @@ public class LoginController {
     public ResponseEntity loginUser(@RequestParam("userName") String username, @RequestParam("password") String password){
         return checkLogin.checkUser(username, password);
     }
+
+    @GetMapping("/hello")
+    public String printHello(){
+        return "hello";
+    }
 }

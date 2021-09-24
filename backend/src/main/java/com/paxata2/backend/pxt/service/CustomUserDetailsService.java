@@ -3,6 +3,7 @@ package com.paxata2.backend.pxt.service;
 import com.paxata2.backend.pxt.entity.Users;
 import com.paxata2.backend.pxt.repository.UsersMongoDBRepository;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,7 +29,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     private org.springframework.security.core.userdetails.User createUser(Users user) {
+        ArrayList<GrantedAuthority> arrayList = new ArrayList<GrantedAuthority>();
+        arrayList.add(new SimpleGrantedAuthority("IS_AUTHENTICATED_ANONYMOUSLY"));
+
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), new ArrayList<GrantedAuthority>());
+                user.getPassword(), arrayList);
     }
 }
