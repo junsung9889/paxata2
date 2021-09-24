@@ -22,7 +22,6 @@ import GetTagAPI from '../../apis/GetTagAPI';
 import PostTagAPI from '../../apis/PostTagAPI';
 import DeleteTagAPI from '../../apis/DeleteTagAPI';
 import FilterModal from './FilterModal';
-import InputGroup from 'react-bootstrap/InputGroup'
 
 const useRowStyles = makeStyles({
     root: {

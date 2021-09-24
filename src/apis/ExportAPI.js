@@ -6,7 +6,7 @@ export async function getData(dataVersion='*/-1'){
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
-    let data = null;
+    let data;
     await axios.get(`/rest/library/data/${dataVersion}`,{
         headers: {
             'Authorization': basicAuth,

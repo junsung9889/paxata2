@@ -6,20 +6,19 @@ import "./LoginPage.css";
 import { useHistory} from "react-router-dom";
 
 export default function LoginPage() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const history = useHistory();
 
   function validateForm() {
     return name.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: { preventDefault: () => void; }) {
     event.preventDefault();
   }
   async function checkLogin(){
-    console.log(1);
-    const isAuthenticated = await LoginAPI({name,password});
+    const isAuthenticated: Boolean = await LoginAPI({name,password});
     if(isAuthenticated)
       history.push('./main');
   }
@@ -27,7 +26,7 @@ export default function LoginPage() {
   return (
     <div className="Login">
       <Form onSubmit={handleSubmit}>
-        <Form.Group size="lg">
+        <Form.Group >
           <Form.Label>Username</Form.Label>
           <Form.Control
             autoFocus
@@ -35,7 +34,7 @@ export default function LoginPage() {
             onChange={(e) => setName(e.target.value)}
           />
         </Form.Group>
-        <Form.Group size="lg" controlId="password">
+        <Form.Group controlId="password">
           <Form.Label className = 'password'>Password</Form.Label>
           <Form.Control
             type="password"
@@ -43,7 +42,7 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button size="mg" type="submit" disabled={!validateForm()} className = 'loginButton'
+        <Button type="submit" disabled={!validateForm()} className = 'loginButton'
                 onClick = {() => {checkLogin()}}>
             Login
         </Button>

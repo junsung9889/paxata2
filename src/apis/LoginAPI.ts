@@ -1,8 +1,13 @@
 import axios from "axios";
 
-export default async function LoginAPI({name, password}){
+type User ={
+    name : string,
+    password : string,
+}
 
-    let isAuthenticated = false;
+export default async function LoginAPI({name, password}: User){
+
+    let isAuthenticated: Boolean = false;
 
     await axios({
         url: '/back/login',
