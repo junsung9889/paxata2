@@ -50,16 +50,11 @@ public class CheckLogin {
             String hash =  HashUtil.createHash(password,usersList.map(users -> users.id).stream().findFirst().get());
             System.out.println(pw + "\n" + hash);
             if(pw.equals("$PES$:" + hash)) {
-                System.out.println(1);
                 UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(username,password);
-                System.out.println(2);
+                        new UsernamePasswordAuthenticationToken(username,"$PES$:" + hash);
                 Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-                System.out.println(3);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println(4);
                 String jwt = tokenProvider.createToken(authentication);
-                System.out.println(5);
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 

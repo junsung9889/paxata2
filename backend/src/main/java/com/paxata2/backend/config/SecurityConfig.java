@@ -4,6 +4,8 @@ import com.paxata2.backend.jwt.JwtSecurityConfig;
 import com.paxata2.backend.jwt.JwtAccessDeniedHandler;
 import com.paxata2.backend.jwt.JwtAuthenticationEntryPoint;
 import com.paxata2.backend.jwt.TokenProvider;
+import com.paxata2.backend.pxt.service.CustomPwEncoder;
+import com.paxata2.backend.pxt.util.HashUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,10 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        String idForEncode = "bcrypt";
-        Map encoders = new HashMap<>();
-        encoders.put("sha256", new StandardPasswordEncoder());
-        return new DelegatingPasswordEncoder(idForEncode, encoders);
+        return new CustomPwEncoder();
     }
 
     @Override
