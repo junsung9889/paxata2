@@ -5,7 +5,7 @@ export default async function GetTagAPI({dataFileId}){
     const password = sessionStorage.getItem("password");
     const credentials = Buffer.from(name + ':' + password).toString('base64');
     const basicAuth = 'Basic ' + credentials;
-    let data = null;
+    let data = [];
     await axios.get(`/rest/library/tags?dataFileId=${dataFileId}`,{
         headers: {
             'Authorization': basicAuth,
