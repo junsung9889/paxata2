@@ -1,9 +1,8 @@
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { useState ,useEffect} from 'react';
-import { Form, FormControl } from 'react-bootstrap';
 import {useForm} from 'react-hook-form';
 
-function SearchOptions(props){
+function SearchOptions(props: any){
     const {register, getValues} = useForm();
     const {options,setOptions,index} = props;
 
@@ -17,7 +16,7 @@ function SearchOptions(props){
         onChange();
     }, []);
 
-    function clickDel(event) {
+    function clickDel() {
         let copiedOptions = options.slice();
         copiedOptions.splice(index, 1);
         setOptions(copiedOptions);
@@ -49,9 +48,11 @@ function SearchOptions(props){
     );
 }
 
-export default function FilterModal(props) {
+export default function FilterModal(props: any) {
+  type Option = {opt1 : string, opt2: string, opt3: string}
+
   const [show, setShow] = useState(false);
-  const [options,setOptions] = useState([]);
+  const [options,setOptions] = useState<Option[]>([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -59,7 +60,7 @@ export default function FilterModal(props) {
   const {origin} = props;
 
   const onClick = () => {
-      let copied = origin.concat();
+      let copied: any[] = origin.concat();
       for(let option of options){
           const opt1 = option.opt1;
           const opt2 = option.opt2;
@@ -88,7 +89,8 @@ export default function FilterModal(props) {
   };
 
   function clickAdd(){
-    setOptions(options.concat({}));
+    
+    setOptions(options.concat({opt1 : '',opt2:'',opt3:''}));
   }
 
   return (

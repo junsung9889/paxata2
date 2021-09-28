@@ -32,14 +32,14 @@ const useRowStyles = makeStyles({
 });
 
 export default function CollapsibleTable() {
-    const [data,setData] = useState([]);
-    const [filtered, setFiltered] = useState([]);
+    const [data,setData] = useState<any[]>([]);
+    const [filtered, setFiltered] = useState<any[]>([]);
     let inputText = "";
 
 
     async function fetchData(){
         const files = await getData();
-        setData(files);
+        files? setData(files) : setData([]);
     }
     useEffect(() => {
         HelloAPI();
@@ -90,25 +90,26 @@ export default function CollapsibleTable() {
         </div>
     );
 
-    function Row(props) {
+    function Row(props: any) {
         const { row } = props;
         const [open, setOpen] = useState(false);
-        const [tag, setTag] = useState([]);
+        const [tag, setTag] = useState<any[]>([]);
         const [tagBtn, setTagBtn] = useState(true);
         const classes = useRowStyles();
         const dataFileId = row.dataFileId;
         async function getTag(){
-            const tagData = await GetTagAPI({dataFileId});
+            const tagData: any[] = await GetTagAPI({dataFileId});
+
             if(Array.isArray(tagData) && tagData.length !== 0){
                 setTag(tagData);
             }
         }
-        async function postTag(tagName){
+        async function postTag(tagName : string){
             await PostTagAPI({dataFileId, tagName});
             getTag();
         }
 
-        async function deleteTag(tagId){
+        async function deleteTag(tagId : number){
             await DeleteTagAPI({tagId});
             getTag();
         }
@@ -140,13 +141,13 @@ export default function CollapsibleTable() {
                             deleteTag(tags.tagId)}}>{tags.name}</Button>
                         ))
                     }
-                        {!tagBtn && <input autoFocus size='sm' onKeyDown={(event)=>{
+                        {!tagBtn && <input autoFocus  onKeyDown={(event)=>{
                             if(event.keyCode == 27){
                                 setTagBtn(!tagBtn);
                             }
                             else if(event.keyCode == 13){
-                                if(event.target.value !== ''){
-                                    postTag(event.target.value);
+                                if((event.target as HTMLTextAreaElement).value !== ''){
+                                    postTag((event.target as HTMLTextAreaElement).value);
                                     setTagBtn(!tagBtn);
                                 }
                             }
