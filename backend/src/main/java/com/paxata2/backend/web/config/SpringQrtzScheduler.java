@@ -1,4 +1,4 @@
-package com.paxata2.backend.web.controller;
+package com.paxata2.backend.web.config;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -60,7 +60,6 @@ public class SpringQrtzScheduler {
         schedulerFactory.setJobDetails(job);
         schedulerFactory.setTriggers(trigger);
 
-        // Comment the following line to use the default Quartz job store.
         schedulerFactory.setDataSource(quartzDataSource);
 
         return schedulerFactory;
