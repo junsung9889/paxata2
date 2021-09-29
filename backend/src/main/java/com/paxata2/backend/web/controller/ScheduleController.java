@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
+
     @Autowired
     private ScheduleService scheduleService;
 
@@ -26,7 +27,7 @@ public class ScheduleController {
                     HttpStatus.BAD_REQUEST);
         }
 
-        JobKey jobKey = new JobKey(jobRequest.getJobName(), jobRequest.getJobGroup());
+        JobKey jobKey = new JobKey(jobRequest.getJobName(), "DEFAULT");
         if (!scheduleService.isJobExists(jobKey)) {
             if (jobRequest.getCronExpression() == null) {
                 scheduleService.addJob(jobRequest, SampleJob.class);

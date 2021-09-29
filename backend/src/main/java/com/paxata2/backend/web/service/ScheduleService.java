@@ -2,23 +2,53 @@ package com.paxata2.backend.web.service;
 
 import com.paxata2.backend.web.dto.JobRequest;
 import com.paxata2.backend.web.dto.JobStatusResponse;
-import org.quartz.Job;
-import org.quartz.JobKey;
+import com.paxata2.backend.web.utils.JobUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.quartz.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.stereotype.Service;
 
-public interface ScheduleService {
-    JobStatusResponse getAllJobs();
+import java.util.Date;
 
-    boolean isJobRunning(JobKey jobKey);
+@Slf4j
+@Service
+public class ScheduleService {
+    @Autowired
+    private SchedulerFactoryBean schedulerFactoryBean;
 
-    boolean isJobExists(JobKey jobKey);
+    @Autowired
+    private ApplicationContext context;
 
-    boolean addJob(JobRequest jobRequest, Class<? extends Job> jobClass);
+    public boolean addJob(JobRequest jobRequest, Class<? extends Job> jobClass) {
+        JobKey jobKey = null;
+        JobDetail jobDetail;
+        Trigger trigger;
 
-    boolean deleteJob(JobKey jobKey);
+        try {
+            trigger = JobUtils.createTrigger(jobRequest);
+            jobDetail = JobUtils.createJob(jobRequest, jobClass, context);
+            jobKey = JobKey.jobKey(jobRequest.getJobName(), "DEFAULT");
 
-    boolean pauseJob(JobKey jobKey);
+            Date dt = schedulerFactoryBean.getScheduler().scheduleJob(jobDetail, trigger);
+            log.debug("Job with jobKey : {} scheduled successfully at date : {}", jobDetail.getKey(), dt);
+            return true;
+        } catch (SchedulerException e) {
+            log.error("error occurred while scheduling with jobKey : {}", jobKey, e);
+        }
+        return false;
+    }
 
-    boolean resumeJob(JobKey jobKey);
-
-    String getJobState(JobKey jobKey);
+    public boolean isJobExists(JobKey jobKey) {
+        try {
+            Scheduler scheduler = schedulerFactoryBean.getScheduler();
+            if (scheduler.checkExists(jobKey)) {
+                return true;
+            }
+        } catch (SchedulerException e) {
+            log.error("[schedulerdebug] error occurred while checking job exists :: jobKey : {}", jobKey, e);
+        }
+        return false;
+    }
 }

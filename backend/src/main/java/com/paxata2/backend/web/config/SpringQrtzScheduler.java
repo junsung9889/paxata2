@@ -3,11 +3,8 @@ package com.paxata2.backend.web.config;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
-import com.paxata2.backend.web.config.AutoWiringSpringBeanJobFactory;
 import com.paxata2.backend.web.job.SampleJob;
-import org.quartz.JobDetail;
-import org.quartz.SimpleTrigger;
-import org.quartz.Trigger;
+import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +39,7 @@ public class SpringQrtzScheduler {
 
     @Bean
     public SpringBeanJobFactory springBeanJobFactory() {
-        AutoWiringSpringBeanJobFactory jobFactory = new AutoWiringSpringBeanJobFactory();
+        AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
         logger.debug("Configuring Job factory");
 
         jobFactory.setApplicationContext(applicationContext);
@@ -50,46 +47,19 @@ public class SpringQrtzScheduler {
     }
 
     @Bean
-    public SchedulerFactoryBean scheduler(Trigger trigger, JobDetail job, DataSource quartzDataSource) {
+    public SchedulerFactoryBean scheduler( DataSource quartzDataSource) {
 
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
         schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
 
         logger.debug("Setting the Scheduler up");
         schedulerFactory.setJobFactory(springBeanJobFactory());
-        schedulerFactory.setJobDetails(job);
-        schedulerFactory.setTriggers(trigger);
-
         schedulerFactory.setDataSource(quartzDataSource);
 
         return schedulerFactory;
     }
 
-    @Bean
-    public JobDetailFactoryBean jobDetail() {
 
-        JobDetailFactoryBean jobDetailFactory = new JobDetailFactoryBean();
-        jobDetailFactory.setJobClass(SampleJob.class);
-        jobDetailFactory.setName("Qrtz_Job_Detail");
-        jobDetailFactory.setDescription("Invoke Sample Job service...");
-        jobDetailFactory.setDurability(true);
-        return jobDetailFactory;
-    }
-
-    @Bean
-    public SimpleTriggerFactoryBean trigger(JobDetail job) {
-
-        SimpleTriggerFactoryBean trigger = new SimpleTriggerFactoryBean();
-        trigger.setJobDetail(job);
-
-        int frequencyInSec = 10;
-        logger.info("Configuring trigger to fire every {} seconds", frequencyInSec);
-
-        trigger.setRepeatInterval(frequencyInSec * 1000);
-        trigger.setRepeatCount(SimpleTrigger.REPEAT_INDEFINITELY);
-        trigger.setName("Qrtz_Trigger");
-        return trigger;
-    }
 
     @Bean
     @QuartzDataSource
