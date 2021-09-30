@@ -1,15 +1,11 @@
 package com.paxata2.backend.web.job;
 
-import com.paxata2.backend.web.service.JobService;
 import lombok.SneakyThrows;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -19,17 +15,13 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Arrays;
 
 @Component
 public class SampleJob implements Job {
 
     Logger logger = LoggerFactory.getLogger(getClass());
-
-    RestTemplate restTemplate = new RestTemplate();
 
     @SneakyThrows
     public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -37,22 +29,20 @@ public class SampleJob implements Job {
         logger.info("Job ** {} ** fired @ {}", context.getJobDetail().getKey().getName(), context.getFireTime());
         String uri = context.getJobDetail().getJobDataMap().getString("url");
         File file = new File(uri);
-        MultipartFile multipartFile = new MockMultipartFile(file.getName(), new FileInputStream(file));
+        MultipartFile multipartFile = new MockMultipartFile(file.getName(), file.getName(), "txt/plain", new FileInputStream(file));
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.MULTIPART_FORM_DATA);
         headers.setBasicAuth("superuser", "superuser");
+
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
-        body.add("data",new ByteArrayResource(multipartFile.getBytes()));
-        System.out.println(Arrays.toString(multipartFile.getBytes()));
+        body.add("data", multipartFile.getResource());
+        HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-        HttpEntity<MultiValueMap<String, Object>> requestEntity
-                = new HttpEntity<>(body, headers);
-
+        RestTemplate restTemplate = new RestTemplate();
         restTemplate.postForEntity("http://220.220.220.80:8000/rest/datasource/imports/local?name=" + file.getName()
         , requestEntity, String.class);
 
         logger.info("Next job scheduled @ {}", context.getNextFireTime());
     }
-
-
 }
